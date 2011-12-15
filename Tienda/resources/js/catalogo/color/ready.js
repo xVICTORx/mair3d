@@ -70,8 +70,8 @@ $(document).ready(function (){
             width: 200
         }
         ],
-        url : base_url + "/catalogo/colores/operations?oper=load",
-        editurl : base_url + "/catalogo/colores/operations",
+        url : base_url + "/admin/colores/operations?oper=load",
+        editurl : base_url + "/admin/colores/operations",
         datatype : "json",
         caption : "Lista de colores disponibles",
         pager : "#colorPager",

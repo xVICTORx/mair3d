@@ -17,10 +17,10 @@ class Colores extends CI_Controller {
     /**
      * Mapea las url
      * 
-     *  - http://server/catalogo/colores/
-     *  - http://server/index.php/catalogo/colores/
-     *  - http://server/catalogo/colores/index
-     *  - http://server/index.php/catalogo/colores/
+     *  - http://server/admin/colores/
+     *  - http://server/index.php/admin/colores/
+     *  - http://server/catalogo/admin/index
+     *  - http://server/index.php/admin/colores/
      */
     public function index() {
         $this->load->view(VIEW_CATALOGO_COLOR);
@@ -29,8 +29,8 @@ class Colores extends CI_Controller {
     /**
      * Mapea las urls
      * 
-     *  - http://server/catalogo/colores/operations
-     *  - http://server/index.php/catalogo/colores/operations
+     *  - http://server/catalogo/admin/operations
+     *  - http://server/index.php/admin/colores/operations
      */
     public function operations() {
         $oper = isset($_POST["oper"])? $_POST["oper"] : "";
