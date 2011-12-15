@@ -53,7 +53,7 @@ class UsuarioDaoImpl extends CI_Model implements UsuarioDao {
     public function getById($id) {
        $this->db->where(TABLE_USUARIO_ID_USUARIO, $id);
        $query = $this->db->get(TABLE_USUARIO);
-       $usuarios = $this->getResult($query->result());
+       $usuarios = $this->_getResult($query->result());
        
        if(count($usuarios) > 0){
            return $usuarios[0];
@@ -70,7 +70,7 @@ class UsuarioDaoImpl extends CI_Model implements UsuarioDao {
     public function getByLogin($login) {
        $this->db->where(TABLE_USUARIO_LOGIN, $login);
        $query = $this->db->get(TABLE_USUARIO);
-       $usuarios = $this->getResult($query->result());
+       $usuarios = $this->_getResult($query->result());
        
        if(count($usuarios) > 0){
            return $usuarios[0];
@@ -105,12 +105,11 @@ class UsuarioDaoImpl extends CI_Model implements UsuarioDao {
      * @param Usuario $usuario  Usuario que se usara como criterio de busqueda
      */
     public function searchByExample($usuario) {
-        
         $this->db->like(TABLE_USUARIO_LOGIN, $usuario->getLogin(), LIKE_AFTER);
         $this->db->like(TABLE_USUARIO_PASS, $usuario->getPass(), LIKE_AFTER);
-        
         $query = $this->db->get(TABLE_USUARIO);
-        return $this->getResult($query->result());
+        
+        return $this->_getResult($query->result());
     }
     
     /**
@@ -125,12 +124,13 @@ class UsuarioDaoImpl extends CI_Model implements UsuarioDao {
      * @param Integer $start Apartir de que registro se debe comenzar
      * @return array El array de usuarios encontrados
      */
-    public function searchByExamplePaged($usuario, $orderBy = "idUsuario", $order = "asc", $limit = 20, $start = 0) {
+    public function searchByExamplePaged($usuario, $orderBy = "idUsuario", $order = "asc", $limit = 20, $offset = 0) {
         $this->db->like(TABLE_USUARIO_LOGIN, $usuario->getLogin(), LIKE_AFTER);
         $this->db->like(TABLE_USUARIO_LOGIN, $usuario->getPass(), LIKE_AFTER);
         $this->db->order_by($orderBy, $order);
-        $query = $this->db->get(TABLE_USUARIO, $limit, $start);
-        return $this->getResult($query->result());
+        $query = $this->db->get(TABLE_USUARIO, $limit, $offset);
+        
+        return $this->_getResult($query->result());
     }
     
     /**
@@ -140,7 +140,7 @@ class UsuarioDaoImpl extends CI_Model implements UsuarioDao {
      */
     public function getAll() {
         $query = $this->db->get(TABLE_USUARIO);
-        return $this->getResult($query->result());
+        return $this->_getResult($query->result());
     }
     
     /**
@@ -150,7 +150,7 @@ class UsuarioDaoImpl extends CI_Model implements UsuarioDao {
      * @param Object $result Resultado de un query
      * @return array Un array de Usuarios
      */
-    private function getResult($result){
+    private function _getResult($result){
         $usuarios = array();
         foreach($result as $key => $row){
             $usuarios[$key] = new Usuario($row->idUsuario, 
