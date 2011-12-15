@@ -37,9 +37,12 @@ define('FOPEN_WRITE_CREATE_STRICT',				'xb');
 define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 
 
-/* Incluyo archivo de constantes de la base de datos */
+/* Incluyo archivo de constantes de la base de datos y direcciones de las views */
 
 require_once dirname(__FILE__) . "/database_constants.php";
+require_once dirname(__FILE__) . "/view_name_constants.php";
+
+define("TITLE_ADMIN", "Administrador Tienda Virtual");
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */
