@@ -1,0 +1,55 @@
+.imagenColorAgrandable {
+    
+}
+
+.imagenColor {
+    
+}
+
+.imagenProducto {
+    width: 350px;
+    height: auto !important;
+    float: left;
+}
+
+.imagenProductoGrande {
+    height: auto !important;
+}
+
+.detalleProducto {
+    width: 290px;
+    float: left;
+    height: auto;
+    margin-left: 8px;
+}
+
+.coloresDisponibles {
+    width: 350px;
+    float: left;
+}
+
+.colorDispoble {
+    width: auto;
+    margin-left: 10px;
+    float: left;
+    text-align: center;
+    font-weight: bold;
+}
+
+#rightSide {
+    float: left;
+    width: 214px;
+    height: auto;
+    margin-left: 8px;
+}
+
+#footer {
+    float: left;
+    width: 1024px;
+    height: auto;
+}
+
+h3 {
+    font-size: 12px;
+}
+

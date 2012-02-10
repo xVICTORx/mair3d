@@ -52,7 +52,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('database');
+$autoload['libraries'] = array('database', 'session', 'cart', 'email');
 
 
 /*
@@ -64,7 +64,7 @@ $autoload['libraries'] = array('database');
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url', 'html');
+$autoload['helper'] = array('url', 'html', 'text');
 
 
 /*
@@ -109,11 +109,45 @@ $autoload['language'] = array();
 |
 */
 
-$autoload['model'] = array('dto/Usuario',
-                           'dto/Color',
-                           'dao/impl/UsuarioDaoImpl',
-                           'dao/impl/ColorDaoImpl',
-                           'service/ColorService',
+$autoload['model'] = array('dto/usuario',
+                           'dto/color',
+                           'dto/categoria',
+                           'dto/subcategoria',
+                           'dto/talla',
+                           'dto/producto',
+                           'dto/producto_talla',
+                           'dto/producto_color',
+                           'dto/cliente',
+                           'dto/pedido',
+                           'dto/pedido_producto',
+                           'dto/estatus',
+                           'dto/descuento',
+                           'dao/usuariodao',
+                           'dao/colordao',
+                           'dao/categoriadao',
+                           'dao/subcategoriadao',
+                           'dao/talladao',
+                           'dao/productodao',
+                           'dao/producto_talladao',
+                           'dao/producto_colordao',
+                           'dao/clientedao',
+                           'dao/pedidodao',
+                           'dao/pedido_productodao',
+                           'dao/estatusdao',
+                           'dao/descuentodao',
+                           'service/colorservice',
+                           'service/categoriaservice',
+                           'service/subcategoriaservice',
+                           'service/tallaservice',
+                           'service/productoservice',
+                           'service/usuarioservice',
+                           'service/producto_tallaservice', 
+                           'service/producto_colorservice',
+                           'service/cartservice',
+                           'service/clienteservice',
+                           'service/pedidosservice',
+                           'service/estatusservice',
+                           'service/descuentoservice',
                            'util/jqGridModel');
 
 

@@ -1,0 +1,91 @@
+/*
+* Divs contenedores comunes
+*/
+html {
+    background: url('../../imgs/fondo.png');
+}
+
+body {
+    width: 1024px;
+    margin: 0 auto;
+    font-size: 11px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+#header {
+    float: left;
+    width: 1024px;
+    height: 350px;
+}
+
+#linksHeader {
+    width: 48%;
+    margin-left: 2%;
+    margin-top: 1%;
+    float: left;
+}
+
+#infoHeader {
+    width: 50%;
+    float: left;
+    text-align: right;
+}
+
+#contenido {
+    float: left;
+    width: 1024px;
+    height: auto;
+}
+
+#menu {
+    float: left;
+    width: 200px;
+    height: auto;
+}
+
+#modulo {
+    float: left;
+    width: 824px;
+    height: auto;
+}
+
+#footer {
+    float: left;
+    width: 1024px;
+    text-align: center;
+    margin-top: 10px;
+    height: auto;
+}
+
+h3 {
+    font-size: 12px;
+}
+
+.uiHeader {
+    font-size: 16px;
+    padding: 5px;
+    text-align: center;
+    margin-top: 1px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.menuLinks {
+    font-size: 13px;
+    padding: 5px;
+    text-align: right;
+    margin-top: 1px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.menuLinks a {
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+.menuLinks a:hover {
+    color: #1c94c4;
+}

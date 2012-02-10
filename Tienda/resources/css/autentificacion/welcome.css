@@ -1,0 +1,57 @@
+.uiHeader {
+    font-size: 16px;
+    padding: 5px;
+    text-align: center;
+    margin-top: 1px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+h3 {
+    font-size: 12px;
+}
+
+p, fieldset {
+    padding:0; 
+    border:0; 
+    margin-top: 0px;
+}
+
+input {
+    width: 95%; 
+    padding: 8px; 
+    margin: 0 auto; 
+    margin-bottom: 10px; 
+    margin-top: 10px;
+}
+
+label, input {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    display: block;
+}
+
+label {
+    font-size: 12px;
+}
+
+#send, #cancel {
+    width: 100px;
+}
+
+#cancel {
+    margin-left: 50px;
+}
+
+#buttons {
+    text-align: center;
+}
+
+#note {
+    text-align: center;
+}
+
+#errorFrm {
+    padding: 5px; 
+    margin-top: 0px;
+}

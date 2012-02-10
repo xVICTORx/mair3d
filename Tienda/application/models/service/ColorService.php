@@ -11,7 +11,7 @@ class ColorService extends CI_Model {
     
     public function __construct() {
         parent::__construct();
-        $this->colorDAO = new ColorDaoImpl;
+        $this->colorDAO = new ColorDao;
     }
     
     /**
@@ -44,17 +44,17 @@ class ColorService extends CI_Model {
             $gridRows[$key]["id"] = $color->getIdColor();
             $gridRows[$key][TABLE_COLOR_NOMBRE] = $color->getNombre();
             $gridRows[$key][TABLE_COLOR_DESCRIPCION] = $color->getDescripcion();
-            $gridRows[$key]["subirImagen"] = "";
-            $gridRows[$key][TABLE_COLOR_IMAGEN] = $color->getImagen();
+            $gridRows[$key]["subirImagenColor"] = "";
+            $gridRows[$key]["imagenColor"] = $color->getImagen();
             if($color->getImagen() != "" && filter_var($color->getImagen(), FILTER_VALIDATE_URL)){
                 $image_properties = array(
                       "src" => $color->getImagen(),
                       "width" => "80",
                       "height" => "70",
                 );
-                $gridRows[$key]["imagenHtml"] = img($image_properties);
+                $gridRows[$key]["imagenHtmlColor"] = img($image_properties);
             } else {
-                $gridRows[$key]["imagenHtml"] = "<strong>Imagen no disponible</strong>";
+                $gridRows[$key]["imagenHtmlColor"] = "<strong>Imagen no disponible</strong>";
             }
             
         }
@@ -92,6 +92,10 @@ class ColorService extends CI_Model {
      */
     public function delete($idColor) {
         $this->colorDAO->delete($idColor);
+    }
+    
+    public function getAll() {
+        return $this->colorDAO->getAll();
     }
 }
 

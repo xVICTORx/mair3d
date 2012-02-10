@@ -42,7 +42,20 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 require_once dirname(__FILE__) . "/database_constants.php";
 require_once dirname(__FILE__) . "/view_name_constants.php";
 
+/* Constantes del sistema */
+
 define("TITLE_ADMIN", "Administrador Tienda Virtual");
+define("TITLE_TIENDA", "Raklyn de México S.A. de C.V");
+define("COSTO_ENVIO", "50");
+define("ADMIN_CORREO", "admin@raklyn.com.mx");
+define("COPIA_CORREO", "papo.o@hotmail.com");
+
+/* Constantes para la conexion a la base de datos */
+
+define("DB_HOSTNAME", "localhost");
+define("DB_USER"    , "root");
+define("DB_PASSWORD", "");
+define("DB_DATABASE", "tienda");
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

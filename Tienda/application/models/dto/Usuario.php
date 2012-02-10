@@ -7,9 +7,9 @@
  */
 class Usuario {
 
-    private $idUsuario = null;
-    private $login = "";
-    private $pass = "";
+    private $idUsuario;
+    private $login;
+    private $pass;
 
     public function __construct($idUsuario = null, $login = "", $pass = "") {
         $this->idUsuario = $idUsuario;
