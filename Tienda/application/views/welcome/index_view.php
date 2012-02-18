@@ -38,12 +38,15 @@
             </div>
             <div id="dataHeader">
                 <h3 class="menuLinks ui-widget-header ui-corner-all">
-                    <a href="#">Inicio</a>
-                    <a href="#">Quienes somos</a>
-                    <a href="#">Servicios</a>
-                    <a href="#">Promociones</a>
+                    <a href="#"><?php echo anchor(base_url(MODULE_PRODUCTOS), "Inicio") ?></a>
+                    <a href="#"><?php echo anchor(base_url("quienes"), "Quienes somos") ?></a>
+                    <a href="#"><?php echo anchor(base_url("ofertas"), "Promociones") ?></a>
                     <a href="#"><?php echo anchor(base_url(MODULE_PRODUCTOS), "Productos") ?></a>
-                    <a href="#">Contacto</a>
+                    <a href="#"><?php echo anchor(base_url("contacto"), "Contacto") ?></a>
+                    <span style="float: right;">
+                        <label for="buscador">Buscador: </label>
+                        <input type="text" style="height: 10px; width: 150px; margin-top: -2px;" class="ui-widget-content ui-corner-all" id="buscador" placeholder="Buscar un producto..."/>
+                    </span>
                 </h3>
             </div>
         </div>
@@ -54,7 +57,7 @@
             <h3 class="ui-widget-header ui-corner-all">
                 Doctor Valenzuela 67, Col. Doctores, México, D.F. C.P. 06720.
                 <br/>
-                Tel: (52) (55) 5761 8211, Fax: (52) (55) 5761 5521, ventas@raklyn.com.mx 
+                Tel: (52) (55) 5761 8211, Fax: (52) (55) 5761 5521, ventas@raklyn.com.mx
                 <br/>
                 Derechos Reservados Raklyn de México, S.A. de C.V. 2011 | Desarrollo por www.mair3d.com.mx
             </h3>

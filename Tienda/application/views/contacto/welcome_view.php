@@ -6,8 +6,6 @@
         <link href="<?php echo base_url(CSS_JQUERY) ?>" type="text/css" rel="stylesheet"/>
         <link href="<?php echo base_url(CSS_JQGRID) ?>" type="text/css" rel="stylesheet"/>
         <link href="<?php echo base_url(CSS_PRODUCTOS_WELCOME) ?>" type="text/css" rel="stylesheet"/>
-        <link href="<?php echo base_url(CSS_ZOOMER) ?>" type="text/css" rel="stylesheet"/>
-        <link href="<?php echo base_url(CSS_PRODUCTOS_VER) ?>" type="text/css" rel="stylesheet"/>
         <link rel="shortcut icon" href="<?php echo base_url("/resources/imgs/favicon.ico") ?>" />
         <script src="<?php echo base_url(JS_JQUERY) ?>" type="text/javascript"></script>
         <script src="<?php echo base_url(JS_JQUERY_UI) ?>" type="text/javascript"></script>
@@ -15,13 +13,16 @@
         <script src="<?php echo base_url(JS_JQGRID) ?>" type="text/javascript"></script>
         <script src="<?php echo base_url(JS_JQUERY_BLOCK) ?>" type="text/javascript"></script>
         <script src="<?php echo base_url(JS_JQUERY_UPLOAD) ?>" type="text/javascript"></script>
-        <script src="<?php echo base_url(JS_JQUERY_ZOOMER) ?>" type="text/javascript"></script>
         <script type="text/javascript">
             var base_url = "<?php echo base_url() ?>index.php";
             var categoria = <?php echo $categoria; ?>;
         </script>
         <script src="<?php echo base_url(JS_PRODUCTOS_WELCOME_READY) ?>" type="text/javascript"></script>
-        <script src="<?php echo base_url(JS_PRODUCTOS_VER_READY) ?>" type="text/javascript"></script>
+        <style type="text/css">
+            .rojo {
+                color: #906;
+            }
+        </style>
     </head>
     <body>
         <div id="header">
@@ -60,101 +61,29 @@
                 <table id="treeMenu"></table>
             </div>
             <div id="modulo">
-                <h3 class="tituloMediano ui-widget-header ui-corner-all"><?php echo $categoria; ?> - <?php echo $subcategoria; ?> - <?php echo $modelo; ?> </h3>
-                <div class="imagenProducto">
-                    <?php echo $imagenProducto; ?>
-                    <div class="coloresDisponibles">
-                        <h3 class="tituloMediano ui-widget-header ui-corner-all">Imagenes</h3>
-                        <?php foreach ($colores as $color): ?>
-                            <?php if ($color["imagen"] != null): ?>
-                                <div class="colorDispoble">
-                                    <?php echo $color["imagen"]; ?>
-                                    <br/>
-                                    <?php echo $color["nombre"]; ?>
-                                </div>
-                            <?php endif; ?>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
-                <div class="detalleProducto ui-widget-content ui-corner-all">
-                    <input type="hidden" id="idProducto" value="<?php echo $idProducto; ?>" />
-                    <input type="hidden" id="precio" value="<?php echo $precioFinal; ?>" />
-                    <table align="center" class="tableDetalleProducto" cellpadding="2">
-                        <tr>
-                            <td><strong>Modelo: </strong></td>
-                            <td><?php echo $modelo; ?></td>
-                        </tr>
-<!--                        <tr>
-                            <td><strong>Categoria: </strong></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Subcategoria: </strong></td>
-                            <td>></td>
-                        </tr>-->
-                        <tr>
-                            <td><strong>Descripcion: </strong></td>
-                            <td><p style="text-align: justify; width: 98%;"><?php echo $descripcion; ?></p></td>
-                        </tr>
-                        <?php if ($descuento != 0): ?>
-                            <tr>
-                                <td><strong>Precio: </strong></td>
-                                <td class="precioTachado">$ <?php echo number_format($precio); ?></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Descuento: </strong></td>
-                                <td class="descuento"><?php echo number_format($descuento); ?> %</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Precio final: </strong></td>
-                                <td class="precio"><strong>$ <?php echo number_format($precioFinal); ?></strong></td>
-                            </tr>
-                        <?php else: ?>
-                            <tr>
-                                <td><strong>Precio: </strong></td>
-                                <td class="precio">$ <?php echo number_format($precio); ?></td>
-                            </tr>
-                        <?php endif; ?>
-                        <tr>
-                            <td><strong>Color:</strong></td>
-                            <td>
-                                <select id="idColor">
-                                    <?php foreach ($colores as $color): ?>
-                                        <option value="<?php echo $color["idColor"] ?>"><?php echo $color["nombre"] ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><strong>Talla:</strong></td>
-                            <td>
-                                <select id="idTalla">
-                                    <?php foreach ($tallas as $talla): ?>
-                                        <option value="<?php echo $talla["idTalla"] ?>"><?php echo $talla["talla"] ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><strong>Cantidad:</strong></td>
-                            <td>
-                                <input type="text" id="cantidad" value="1" readonly="true" size="2" style="width: auto;"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <button id="agregarCarrito" style="width: 100%">Agregar al carrito</button>
-                            </td>
-                        </tr>
-                    </table>
-                    <div class="container">
-                        <ul class="thumb">
-                            <?php foreach ($colores as $color): ?>
-                            <li onmouseover="cambiaImagen('<?php echo $color["imagenLink"] ?>')"><a><?php echo $color["imagenColor"]; ?></a></li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </div>
-                </div>
+                <p>&nbsp;</p>
+                <table width="" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td align="center" valign="middle"><p class="rojo">Dirección: </p>
+                            <p>Doctor Valenzuela # 67, Colonia de los Doctores, <br />
+                                Delegación Cuauhtémoc C.P. 06720, México D.F.<br />
+                                <br />
+                                <span class="rojo">Teléfono :</span><span class="tels"> 57618211</span></p>
+                            <p> <span class="rojo">Fax :</span><span class="tels"> 57615521</span><br />
+                                <br />
+                                <span class="rojo">Correo Electrónico
+                                    :</span> <a href="mailto:ventas@raklyn.com.mx">ventas@raklyn.com.mx</a></p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p></td>
+                        <td>&nbsp;</td>
+                        <td><iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com.mx/maps?f=q&amp;source=s_q&amp;hl=es&amp;geocode=&amp;q=Doctor+Valenzuela+67,+Col.+Doctores,+M%C3%A9xico,+D.F.+C.P.+06720&amp;aq=&amp;sll=23.725012,-102.524414&amp;sspn=32.036449,67.631836&amp;ie=UTF8&amp;hq=&amp;hnear=Doctor+Valenzuela+67,+Doctores,+Cuauht%C3%A9moc,+Ciudad+de+M%C3%A9xico,+Distrito+Federal&amp;ll=19.421278,-99.144168&amp;spn=0.008145,0.016512&amp;t=m&amp;z=14&amp;output=embed"></iframe>
+                            <p><br />
+                                <small><a href="http://maps.google.com.mx/maps?f=q&amp;source=embed&amp;hl=es&amp;geocode=&amp;q=Doctor+Valenzuela+67,+Col.+Doctores,+M%C3%A9xico,+D.F.+C.P.+06720&amp;aq=&amp;sll=23.725012,-102.524414&amp;sspn=32.036449,67.631836&amp;ie=UTF8&amp;hq=&amp;hnear=Doctor+Valenzuela+67,+Doctores,+Cuauht%C3%A9moc,+Ciudad+de+M%C3%A9xico,+Distrito+Federal&amp;ll=19.421278,-99.144168&amp;spn=0.008145,0.016512&amp;t=m&amp;z=14" target="_blank" style="color:#0000FF;text-align:left">Ver mapa más grande</a></small> </p>
+                            <p></p></td>
+                    </tr>
+                </table>
+                <p>&nbsp;</p>
             </div>
             <div id="rightSide">
                 <div id="carrito" class="ui-widget-content ui-corner-all">
@@ -221,7 +150,8 @@
                 </div>
             </div>
         </div>
-        <div id="footer">
+
+        <div id="footer" class="textoChico">
             <h3 class="ui-widget-header ui-corner-all">
                 Doctor Valenzuela 67, Col. Doctores, México, D.F. C.P. 06720.
                 <br/>

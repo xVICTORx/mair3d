@@ -6,8 +6,7 @@
         <link href="<?php echo base_url(CSS_JQUERY) ?>" type="text/css" rel="stylesheet"/>
         <link href="<?php echo base_url(CSS_JQGRID) ?>" type="text/css" rel="stylesheet"/>
         <link href="<?php echo base_url(CSS_PRODUCTOS_WELCOME) ?>" type="text/css" rel="stylesheet"/>
-        <link href="<?php echo base_url(CSS_REGISTRO_WELCOME) ?>" type="text/css" rel="stylesheet"/>
-        <link rel="shortcut icon" href="<?php echo base_url("/resources/imgs/favicon.ico")?>" />
+        <link rel="shortcut icon" href="<?php echo base_url("/resources/imgs/favicon.ico") ?>" />
         <script src="<?php echo base_url(JS_JQUERY) ?>" type="text/javascript"></script>
         <script src="<?php echo base_url(JS_JQUERY_UI) ?>" type="text/javascript"></script>
         <script src="<?php echo base_url(JS_JQGRID_I18N) ?>" type="text/javascript"></script>
@@ -16,7 +15,7 @@
         <script src="<?php echo base_url(JS_JQUERY_UPLOAD) ?>" type="text/javascript"></script>
         <script type="text/javascript">
             var base_url = "<?php echo base_url() ?>index.php";
-            
+            var categoria = <?php echo $categoria; ?>;
         </script>
         <script src="<?php echo base_url(JS_REGISTRO_WELCOME_READY) ?>" type="text/javascript"></script>
     </head>
@@ -40,11 +39,15 @@
             </div>
             <div id="dataHeader">
                 <h3 class="menuLinks ui-widget-header ui-corner-all">
-                    <a href="#">Inicio</a>
-                    <a href="#">Quienes somos</a>
-                    <a href="#">Promociones</a>
+                    <a href="#"><?php echo anchor(base_url(MODULE_PRODUCTOS), "Inicio") ?></a>
+                    <a href="#"><?php echo anchor(base_url("quienes"), "Quienes somos") ?></a>
+                    <a href="#"><?php echo anchor(base_url("ofertas"), "Promociones") ?></a>
                     <a href="#"><?php echo anchor(base_url(MODULE_PRODUCTOS), "Productos") ?></a>
-                    <a href="#">Contacto</a>
+                    <a href="#"><?php echo anchor(base_url("contacto"), "Contacto") ?></a>
+                    <span style="float: right;">
+                        <label for="buscador">Buscador: </label>
+                        <input type="text" style="height: 10px; width: 150px; margin-top: -2px;" class="ui-widget-content ui-corner-all" id="buscador" placeholder="Buscar un producto..."/>
+                    </span>
                 </h3>
             </div>
         </div>
@@ -122,6 +125,43 @@
                         <td><input type="text" maxlength="100" name="pais" id="pais" class="ui-widget-content ui-corner-all inputForm" placeholder="Pais" autocomplete="off" /></td>
                     </tr>
                     <tr>
+                        <td style="width: 25%; text-align: right;"><label for="pais">Es la misma direccion la de envio que la fiscal?:</label></td>
+                        <td><div id="direccionButtons">
+                                <input style="width: auto; float: left;" type="radio" id="radio1" name="direccion" checked="checked" value="SI" />
+                                <label style="width: auto; float: left;" for="radio1">SI</label>
+                                <input style="width: auto; float: left;" type="radio" id="radio2" name="direccion" value="NO"/>
+                                <label style="width: auto; float: left;" for="radio2">No</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="direccionEnvio">
+                        <td colspan="2"><h3 class="textoChico ui-widget-header ui-corner-all">Direccion Envio</h3></td>
+                    </tr>
+                    <tr class="direccionEnvio">
+                        <td style="width: 25%; text-align: right;"><label for="calle">Calle y numero:</label></td>
+                        <td><input type="text" maxlength="255" name="calle" id="calleEnvio" class="ui-widget-content ui-corner-all inputForm" placeholder="Calle" autocomplete="off" /></td>
+                    </tr>
+                    <tr class="direccionEnvio">
+                        <td style="width: 25%; text-align: right;"><label for="colonia">Colonia:</label></td>
+                        <td><input type="text" maxlength="100" name="colonia" id="coloniaEnvio" class="ui-widget-content ui-corner-all inputForm" placeholder="Colonia" autocomplete="off" /></td>
+                    </tr>
+                    <tr  class="direccionEnvio">
+                        <td style="width: 25%; text-align: right;"><label for="cp">Codigo postal:</label></td>
+                        <td><input type="text" maxlength="5" name="cp" id="cpEnvio" class="ui-widget-content ui-corner-all inputForm" placeholder="55555" autocomplete="off" /></td>
+                    </tr>
+                    <tr class="direccionEnvio">
+                        <td style="width: 25%; text-align: right;"><label for="municipio">Municipio o delegacion:</label></td>
+                        <td><input type="text" maxlength="100" name="colonia" id="municipioEnvio" class="ui-widget-content ui-corner-all inputForm" placeholder="Municipio" autocomplete="off" /></td>
+                    </tr>
+                    <tr class="direccionEnvio">
+                        <td style="width: 25%; text-align: right;"><label for="estado">Estado:</label></td>
+                        <td><input type="text" maxlength="100" name="estado" id="estadoEnvio" class="ui-widget-content ui-corner-all inputForm" placeholder="Estado" autocomplete="off" /></td>
+                    </tr>
+                    <tr class="direccionEnvio">
+                        <td style="width: 25%; text-align: right;"><label for="pais">Pais:</label></td>
+                        <td><input type="text" maxlength="100" name="pais" id="paisEnvio" class="ui-widget-content ui-corner-all inputForm" placeholder="Pais" autocomplete="off" /></td>
+                    </tr>
+                    <tr>
                         <td style="text-align: center" colspan="2"><button id="send">Registrarse</button></td>
                     </tr>
                 </table>
@@ -195,7 +235,7 @@
             <h3 class="ui-widget-header ui-corner-all">
                 Doctor Valenzuela 67, Col. Doctores, México, D.F. C.P. 06720.
                 <br/>
-                Tel: (52) (55) 5761 8211, Fax: (52) (55) 5761 5521, ventas@raklyn.com.mx 
+                Tel: (52) (55) 5761 8211, Fax: (52) (55) 5761 5521, ventas@raklyn.com.mx
                 <br/>
                 Derechos Reservados Raklyn de México, S.A. de C.V. 2011 | Desarrollo por www.mair3d.com.mx
             </h3>

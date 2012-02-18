@@ -143,5 +143,13 @@ class Welcome extends CI_Controller {
             $this->load->view(VIEW_PRODUCTOS_VER, $vars);
         }
     }
+    
+    public function buscar() {
+        if(isset($_GET["term"])) {
+            echo json_encode($this->productoService->searchByTerm($_GET["term"]));
+        } else  {
+            echo "Sorry";
+        }
+    }
 
 }

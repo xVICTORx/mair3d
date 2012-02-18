@@ -38,12 +38,15 @@
             </div>
             <div id="dataHeader">
                 <h3 class="menuLinks ui-widget-header ui-corner-all">
-                    <a href="#">Inicio</a>
-                    <a href="#">Quienes somos</a>
-                    <a href="#">Servicios</a>
-                    <a href="#">Promociones</a>
-                    <a href="#">Productos</a>
-                    <a href="#">Contacto</a>
+                    <a href="#"><?php echo anchor(base_url(MODULE_PRODUCTOS), "Inicio") ?></a>
+                    <a href="#"><?php echo anchor(base_url("quienes"), "Quienes somos") ?></a>
+                    <a href="#"><?php echo anchor(base_url("ofertas"), "Promociones") ?></a>
+                    <a href="#"><?php echo anchor(base_url(MODULE_PRODUCTOS), "Productos") ?></a>
+                    <a href="#"><?php echo anchor(base_url("contacto"), "Contacto") ?></a>
+                    <span style="float: right;">
+                        <label for="buscador">Buscador: </label>
+                        <input type="text" style="height: 10px; width: 150px; margin-top: -2px;" class="ui-widget-content ui-corner-all" id="buscador" placeholder="Buscar un producto..."/>
+                    </span>
                 </h3>
             </div>
         </div>
@@ -83,7 +86,7 @@
                             <p>
                                 <strong><?php echo anchor(MODULE_PRODUCTOS_VER . $producto["id"], $producto["name"]) ?></strong>
                                 <br/>
-                                <strong>Color: </strong><?php echo $producto["options"]["color"] ?> 
+                                <strong>Color: </strong><?php echo $producto["options"]["color"] ?>
                                 <strong>Talla: </strong><?php echo $producto["options"]["talla"] ?>
                             </p>
                         </div>
@@ -130,15 +133,15 @@
                         <table>
                             <tr>
                                 <td style="text-align: left;"><strong>Subtotal:</strong></td>
-                                <td style="text-align: right;"><strong  class="descuento">$<?php echo $total ?></strong></td>
+                                <td style="text-align: right;"><strong  class="descuento">$<?php echo number_format($total,2) ?></strong></td>
                             </tr>
                             <tr>
-                                <td style="text-align: left;"><strong>Envio:</strong></td>
-                                <td style="text-align: right;"><strong  class="descuento">$<?php echo COSTO_ENVIO ?></strong></td>
+                                <td style="text-align: left;"><strong>I.V.A.:</strong></td>
+                                <td style="text-align: right;"><strong  class="descuento">$<?php echo number_format($total * .16, 2) ?></strong></td>
                             </tr>
                             <tr>
                                 <td style="text-align: left;"><strong>Total:</strong></td>
-                                <td style="text-align: right;"><strong  class="precio">$<?php echo $total + COSTO_ENVIO?></strong></td>
+                                <td style="text-align: right;"><strong  class="precio">$<?php echo number_format($total + $total * .16, 2) ?></strong></td>
                             </tr>
                         </table>
                         <button id="realizarPedido">Realizar pedido</button>
@@ -147,13 +150,13 @@
             </div>
         </div>
         <div title="Pedido" id="pedido">
-            
+
         </div>
         <div id="footer" class="textoChico">
             <h3 class="ui-widget-header ui-corner-all">
                 Doctor Valenzuela 67, Col. Doctores, México, D.F. C.P. 06720.
                 <br/>
-                Tel: (52) (55) 5761 8211, Fax: (52) (55) 5761 5521, ventas@raklyn.com.mx 
+                Tel: (52) (55) 5761 8211, Fax: (52) (55) 5761 5521, ventas@raklyn.com.mx
                 <br/>
                 Derechos Reservados Raklyn de México, S.A. de C.V. 2011 | Desarrollo por www.mair3d.com.mx
             </h3>

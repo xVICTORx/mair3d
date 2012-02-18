@@ -69,7 +69,25 @@ $(document).ready(function () {
     }).click(function () {
         window.location = base_url + "/registro";
     });
-    $('ul.thumb li').Zoomer({speedView:200,speedRemove:400,altAnim:true,speedTitle:0,debug:false});
+    
+    $('#buscador').autocomplete({
+        source: base_url + "/welcome/buscar",
+        minLength: 2,
+        select: function( event, ui ) {
+            if(ui.item.valor != 0) {
+                window.location = base_url + "/welcome/ver/" + ui.item.valor;
+            }
+        }
+    });
+    
+    $('ul.thumb li').Zoomer({
+        speedView:200,
+        speedRemove:400,
+        altAnim:true,
+        speedTitle:0,
+        debug:false
+    });
+    
 });
 
 function removeProducto(rowid) {
@@ -92,31 +110,34 @@ function login() {
         var data = new Object();
         data.login = $("#login").val();
         data.pass = $("#pass").val();
-        $.blockUI({css: { 
-            border: 'none', 
-            padding: '15px', 
-            backgroundColor: '#000', 
-            '-webkit-border-radius': '10px', 
-            '-moz-border-radius': '10px', 
-            opacity: .4, 
-            color: '#fff' 
-        }, message: '<h3>Autentificando, por favor espere...</h3>'});
+        $.blockUI({
+            css: { 
+                border: 'none', 
+                padding: '15px', 
+                backgroundColor: '#000', 
+                '-webkit-border-radius': '10px', 
+                '-moz-border-radius': '10px', 
+                opacity: .4, 
+                color: '#fff' 
+            }, 
+            message: '<h3>Autentificando, por favor espere...</h3>'
+        });
         $.ajax({
-           url: base_url + "/registro/login",
-           type: 'post',
-           async: true,
-           dataType: 'json',
-           data: data,
-           success: function (data) {
-               $.unblockUI();
-               if(data.estatus == 0){
-                   location.reload(true)
-               } else {
-                   $("#errorFrm").addClass('ui-state-highlight').html(data.mensaje).show('');
-                   $("#login").addClass('ui-state-error');
-                   $("#pass").addClass('ui-state-error');
-               }
-           }
+            url: base_url + "/registro/login",
+            type: 'post',
+            async: true,
+            dataType: 'json',
+            data: data,
+            success: function (data) {
+                $.unblockUI();
+                if(data.estatus == 0){
+                    location.reload(true)
+                } else {
+                    $("#errorFrm").addClass('ui-state-highlight').html(data.mensaje).show('');
+                    $("#login").addClass('ui-state-error');
+                    $("#pass").addClass('ui-state-error');
+                }
+            }
         });
     }
 }

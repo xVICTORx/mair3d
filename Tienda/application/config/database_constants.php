@@ -159,6 +159,12 @@ define("TABLE_CLIENTE_PAIS", "pais");
 define("TABLE_CLIENTE_CP", "cp");
 define("TABLE_CLIENTE_LOGIN", "login");
 define("TABLE_CLIENTE_PASS", "pass");
+define("TABLE_CLIENTE_CALLE_NUMERO_ENVIO", "calleNumeroEnvio");
+define("TABLE_CLIENTE_COLONIA_ENVIO", "coloniaEnvio");
+define("TABLE_CLIENTE_MUNICIPIO_ENVIO", "municipioEnvio");
+define("TABLE_CLIENTE_ESTADO_ENVIO", "estadoEnvio");
+define("TABLE_CLIENTE_PAIS_ENVIO", "paisEnvio");
+define("TABLE_CLIENTE_CP_ENVIO", "cpEnvio");
 
 define("TABLE_PEDIDO_PRODUCTO", "pedido_producto");
 

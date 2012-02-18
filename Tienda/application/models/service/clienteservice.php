@@ -9,8 +9,8 @@ class ClienteService extends CI_Model {
         $this->clienteDao = new ClienteDao();
     }
 
-    public function save($idCliente, $nombre, $apPaterno, $apMaterno, $telefono, $calleNumero, $colonia, $municipio, $estado, $pais, $cp, $login, $password) {
-        $cliente = new Cliente($idCliente, $nombre, $apPaterno, $apMaterno, $telefono, $calleNumero, $colonia, $municipio, $estado, $pais, $cp, $login, $password);
+    public function save($idCliente, $nombre, $apPaterno, $apMaterno, $telefono, $calleNumero, $colonia, $municipio, $estado, $pais, $cp, $login, $password, $calleNumeroEnvio, $coloniaEnvio, $municipioEnvio, $estadoEnvio, $paisEnvio, $cpEnvio) {
+        $cliente = new Cliente($idCliente, $nombre, $apPaterno, $apMaterno, $telefono, $calleNumero, $colonia, $municipio, $estado, $pais, $cp, $login, $password, $calleNumeroEnvio, $coloniaEnvio, $municipioEnvio, $estadoEnvio, $paisEnvio, $cpEnvio);
         $this->clienteDao->save($cliente);
         $this->session->set_userdata('idCliente', $cliente->getIdCliente());
         $this->session->set_userdata('login', $cliente->getLogin());
@@ -75,6 +75,13 @@ class ClienteService extends CI_Model {
             $gridRows[$key][TABLE_CLIENTE_MUNICIPIO] = $cliente->getMunicipio();
             $gridRows[$key][TABLE_CLIENTE_PAIS] = $cliente->getPais();
             $gridRows[$key][TABLE_CLIENTE_TELEFONO] = $cliente->getTelefono();
+            $gridRows[$key][TABLE_CLIENTE_CALLE_NUMERO_ENVIO] = $cliente->getCalleNumeroEnvio();
+            $gridRows[$key]["otraDireccion"] = ($cliente->getCalleNumeroEnvio() != "")? "SI" : "NO";
+            $gridRows[$key][TABLE_CLIENTE_COLONIA_ENVIO] = $cliente->getColoniaEnvio();
+            $gridRows[$key][TABLE_CLIENTE_CP_ENVIO] = $cliente->getCpEnvio();
+            $gridRows[$key][TABLE_CLIENTE_ESTADO_ENVIO] = $cliente->getEstadoEnvio();
+            $gridRows[$key][TABLE_CLIENTE_MUNICIPIO_ENVIO] = $cliente->getMunicipioEnvio();
+            $gridRows[$key][TABLE_CLIENTE_PAIS_ENVIO] = $cliente->getPaisEnvio();
         }
 
         $gridModel = new jqGridModel();

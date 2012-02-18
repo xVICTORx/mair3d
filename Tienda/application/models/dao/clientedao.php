@@ -5,27 +5,27 @@ class ClienteDao extends CI_Model {
     public function __construct() {
         parent::__construct();
     }
-    
+
     public function countAll() {
         $query = $this->db->get(TABLE_CLIENTE);
         return count($query->result());
     }
-    
+
     public function countByExample($cliente) {
         return count($this->searchByExample($cliente));
     }
-    
-    
+
+
     public function delete($id) {
         $this->db->where(TABLE_CLIENTE_ID_CLIENTE, $id);
         $this->db->delete(TABLE_CLIENTE);
     }
-    
+
     public function getAll() {
         $query = $this->db->get(TABLE_CLIENTE);
         return $this->_getResult($query->result());
     }
-    
+
     public function getById($id) {
         $this->db->where(TABLE_CLIENTE_ID_CLIENTE, $id);
         $query = $this->db->get(TABLE_CLIENTE);
@@ -36,7 +36,7 @@ class ClienteDao extends CI_Model {
             return null;
         }
     }
-    
+
     public function getByLogin($login) {
         $this->db->where(TABLE_CLIENTE_LOGIN, $login);
         $query = $this->db->get(TABLE_CLIENTE);
@@ -47,7 +47,7 @@ class ClienteDao extends CI_Model {
             return null;
         }
     }
-    
+
     public function save(Cliente $cliente) {
         $params = array(
             TABLE_CLIENTE_AP_MATERNO => $cliente->getApMaterno(),
@@ -62,8 +62,14 @@ class ClienteDao extends CI_Model {
             TABLE_CLIENTE_PAIS => $cliente->getPais(),
             TABLE_CLIENTE_PASS => $cliente->getPassword(),
             TABLE_CLIENTE_TELEFONO => $cliente->getTelefono(),
+            TABLE_CLIENTE_CALLE_NUMERO_ENVIO => $cliente->getCalleNumeroEnvio(),
+            TABLE_CLIENTE_COLONIA_ENVIO => $cliente->getColoniaEnvio(),
+            TABLE_CLIENTE_CP_ENVIO => $cliente->getCpEnvio(),
+            TABLE_CLIENTE_ESTADO_ENVIO => $cliente->getEstadoEnvio(),
+            TABLE_CLIENTE_MUNICIPIO_ENVIO => $cliente->getMunicipioEnvio(),
+            TABLE_CLIENTE_PAIS_ENVIO => $cliente->getPaisEnvio(),
         );
-        
+
         if($cliente->getIdCliente() == null){
             $this->db->insert(TABLE_CLIENTE, $params);
         } else {
@@ -71,7 +77,7 @@ class ClienteDao extends CI_Model {
             $this->db->update(TABLE_CLIENTE, $params);
         }
     }
-    
+
     public function searchByExample(Cliente $cliente) {
         $this->db->like(TABLE_CLIENTE_AP_MATERNO, $cliente->getApMaterno(), ORDER_ASC);
         $this->db->like(TABLE_CLIENTE_AP_PATERNO, $cliente->getApPaterno(), ORDER_ASC);
@@ -85,11 +91,11 @@ class ClienteDao extends CI_Model {
         $this->db->like(TABLE_CLIENTE_PAIS, $cliente->getPais(), ORDER_ASC);
         $this->db->like(TABLE_CLIENTE_PASS, $cliente->getPassword(), ORDER_ASC);
         $this->db->like(TABLE_CLIENTE_TELEFONO, $cliente->getTelefono(), ORDER_ASC);
-        
+
         $query = $this->db->get(TABLE_CLIENTE);
         return $this->_getResult($query->result());
     }
-    
+
     public function searchByExamplePaged($cliente, $orderBy = "idCliente", $order = "asc", $limit = 20, $offset = 0) {
         $this->db->like(TABLE_CLIENTE_AP_MATERNO, $cliente->getApMaterno(), ORDER_ASC);
         $this->db->like(TABLE_CLIENTE_AP_PATERNO, $cliente->getApPaterno(), ORDER_ASC);
@@ -104,19 +110,19 @@ class ClienteDao extends CI_Model {
         $this->db->like(TABLE_CLIENTE_PASS, $cliente->getPassword(), ORDER_ASC);
         $this->db->like(TABLE_CLIENTE_TELEFONO, $cliente->getTelefono(), ORDER_ASC);
         $this->db->order_by($orderBy, $order);
-        
+
         $query = $this->db->get(TABLE_CLIENTE, $limit, $offset);
         return $this->_getResult($query->result());
     }
-    
+
     private function _getResult($result) {
         $clientes = array();
         foreach($result as $key => $row){
-            $clientes[$key] = new Cliente($row->idCliente, $row->nombre, $row->apPaterno, $row->apMaterno, $row->telefono, $row->calleNumero, $row->colonia, $row->municipio, $row->estado, $row->pais, $row->cp, $row->login, $row->pass);
+            $clientes[$key] = new Cliente($row->idCliente, $row->nombre, $row->apPaterno, $row->apMaterno, $row->telefono, $row->calleNumero, $row->colonia, $row->municipio, $row->estado, $row->pais, $row->cp, $row->login, $row->pass, $row->calleNumeroEnvio, $row->coloniaEnvio, $row->municipioEnvio, $row->estadoEnvio, $row->paisEnvio, $row->cpEnvio);
         }
         return $clientes;
     }
-    
+
     public function validateCorreo($correo) {
         $this->db->where("login", $correo);
         $query = $this->db->get("cliente");

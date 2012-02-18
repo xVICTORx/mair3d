@@ -16,7 +16,7 @@
         <script src="<?php echo base_url(JS_JQUERY_UPLOAD) ?>" type="text/javascript"></script>
         <script type="text/javascript">
             var base_url = "<?php echo base_url() ?>index.php";
-            
+
         </script>
         <script src="<?php echo base_url(JS_PRODUCTOS_WELCOME_READY) ?>" type="text/javascript"></script>
         <script src="<?php echo base_url(JS_PRODUCTOS_VER_READY) ?>" type="text/javascript"></script>
@@ -38,7 +38,7 @@
             </div>
             <div id="imgHeader">
                 <?php echo img(base_url("resources/imgs/raklyn_header.png")) ?>
-            </div>            
+            </div>
         </div>
         <div id="contenido">
             <h3 class="tituloMediano">
@@ -97,8 +97,8 @@
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
-                        <td><strong class="descuento">Envio:</strong></td>
-                        <td><strong class="descuento">$<?php echo COSTO_ENVIO; ?></strong></td>
+                        <td><strong class="descuento">I.V.A.:</strong></td>
+                        <td><strong class="descuento">$<?php echo $iva; ?></strong></td>
                     </tr>
                     <tr>
                         <td>&nbsp;</td>
@@ -106,7 +106,7 @@
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                         <td><strong class="precio">Total:</strong></td>
-                        <td><strong class="precio">$<?php echo ($subtotal - ($subtotal * ($descuento / 100))) + COSTO_ENVIO; ?></strong></td>
+                        <td><strong class="precio">$<?php echo ($subtotal - ($subtotal * ($descuento / 100))) + $iva; ?></strong></td>
                     </tr>
                 </table>
                 <h3 class="tituloMediano2 ui-widget-header ui-corner-top">Datos de entrega</h3>
@@ -130,7 +130,7 @@
             <h3 class="ui-widget-header ui-corner-all">
                 Doctor Valenzuela 67, Col. Doctores, México, D.F. C.P. 06720.
                 <br/>
-                Tel: (52) (55) 5761 8211, Fax: (52) (55) 5761 5521, ventas@raklyn.com.mx 
+                Tel: (52) (55) 5761 8211, Fax: (52) (55) 5761 5521, ventas@raklyn.com.mx
                 <br/>
                 Derechos Reservados Raklyn de México, S.A. de C.V. 2011 | Desarrollo por www.mair3d.com.mx
             </h3>

@@ -28,7 +28,7 @@ $(document).ready(function () {
         }
     };
     $("#clientesGrid").jqGrid({
-        colNames: ["idCliente", "Nombre", "Ap Paterno", "Ap Materno", "Telefono", "Calle", "Colonia", "Municipio", "Estado", "Pais", "CP", "Correo"],
+        colNames: ["idCliente", "Nombre", "Ap Paterno", "Ap Materno", "Telefono", "Calle", "Colonia", "Municipio", "Estado", "Pais", "CP", "Correo", "Otra Direccion", "Calle Envio", "Colonia Envio", "Municipio Envio", "Estado Envio", "Pais Envio", "CP Envio"],
         colModel: [
         {
             name: "id",
@@ -90,6 +90,71 @@ $(document).ready(function () {
             name: "login",
             index: "login",
             editable: true
+        },
+        {
+            name: "otraDireccion",
+            index: "otraDireccion",
+            editable: true
+        },
+        {
+            name: "calleNumeroEnvio",
+            index: "calleNumeroEnvio",
+            editable: true,
+            viewable: true,
+            hidden: true,
+            editrules: {
+                edithidden: true
+            }
+        },
+        {
+            name: "coloniaEnvio",
+            index: "coloniaEnvio",
+            editable: true,
+            viewable: true,
+            hidden: true,
+            editrules: {
+                edithidden: true
+            }
+        },
+        {
+            name: "municipioEnvio",
+            index: "municipioEnvio",
+            editable: true,
+            viewable: true,
+            hidden: true,
+            editrules: {
+                edithidden: true
+            }
+        },
+        {
+            name: "estadoEnvio",
+            index: "estadoEnvio",
+            editable: true,
+            viewable: true,
+            hidden: true,
+            editrules: {
+                edithidden: true
+            }
+        },
+        {
+            name: "paisEnvio",
+            index: "paisEnvio",
+            editable: true,
+            viewable: true,
+            hidden: true,
+            editrules: {
+                edithidden: true
+            }
+        },
+        {
+            name: "cpEnvio",
+            index: "cpEnvio",
+            editable: true,
+            viewable: true,
+            hidden: true,
+            editrules: {
+                edithidden: true
+            }
         }
         ],
         url : base_url + "/clientes/welcome/operations?oper=load",
@@ -109,9 +174,9 @@ $(document).ready(function () {
             repeatitems : false
         }
     });
-    
+
     $("#clientesGrid").jqGrid(
-        "navGrid", 
+        "navGrid",
         "#clientesPager",
         {
             edit: false,
@@ -128,7 +193,7 @@ $(document).ready(function () {
         options,
         options
     );
-    
+
     $("#clientesGrid").jqGrid('filterToolbar', {
         searchOnEnter : false
     });

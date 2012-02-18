@@ -6,7 +6,7 @@
         <link href="<?php echo base_url(CSS_JQUERY) ?>" type="text/css" rel="stylesheet"/>
         <link href="<?php echo base_url(CSS_JQGRID) ?>" type="text/css" rel="stylesheet"/>
         <link href="<?php echo base_url(CSS_PRODUCTOS_WELCOME) ?>" type="text/css" rel="stylesheet"/>
-        <link rel="shortcut icon" href="<?php echo base_url("/resources/imgs/favicon.ico")?>" />
+        <link rel="shortcut icon" href="<?php echo base_url("/resources/imgs/favicon.ico") ?>" />
         <script src="<?php echo base_url(JS_JQUERY) ?>" type="text/javascript"></script>
         <script src="<?php echo base_url(JS_JQUERY_UI) ?>" type="text/javascript"></script>
         <script src="<?php echo base_url(JS_JQGRID_I18N) ?>" type="text/javascript"></script>
@@ -39,11 +39,15 @@
             </div>
             <div id="dataHeader">
                 <h3 class="menuLinks ui-widget-header ui-corner-all">
-                    <a href="#">Inicio</a>
-                    <a href="#">Quienes somos</a>
-                    <a href="#">Promociones</a>
+                    <a href="#"><?php echo anchor(base_url(MODULE_PRODUCTOS), "Inicio") ?></a>
+                    <a href="#"><?php echo anchor(base_url("quienes"), "Quienes somos") ?></a>
+                    <a href="#"><?php echo anchor(base_url("ofertas"), "Promociones") ?></a>
                     <a href="#"><?php echo anchor(base_url(MODULE_PRODUCTOS), "Productos") ?></a>
-                    <a href="#">Contacto</a>
+                    <a href="#"><?php echo anchor(base_url("contacto"), "Contacto") ?></a>
+                    <span style="float: right;">
+                        <label for="buscador">Buscador: </label>
+                        <input type="text" style="height: 10px; width: 150px; margin-top: -2px;" class="ui-widget-content ui-corner-all" id="buscador" placeholder="Buscar un producto..."/>
+                    </span>
                 </h3>
             </div>
         </div>
@@ -55,7 +59,7 @@
                 <h3 class="tituloMediano ui-widget-header ui-corner-all"><?php echo $titulo ?></h3>
                 <?php if ($totalPages > 0): ?>
                     <div id="paginador" class="ui-widget-content">
-                        Pagina: 
+                        Pagina:
                         <?php for ($i = 1; $i <= $totalPages; $i++): ?>
                             <?php echo anchor($module . $i, $i . "&nbsp;"); ?>
                         <?php endfor; ?>
@@ -73,32 +77,32 @@
                                     <td><?php echo $producto[TABLE_PRODUCTO_MODELO]; ?></td>
                                 </tr>
                                 <?php //if ($producto[TABLE_PRODUCTO_DESCUENTO] != 0): ?>
-<!--                                    <tr>
+    <!--                                    <tr>
                                         <td><strong>Precio: </strong></td>
-                                        <td class="precioTachado">$ <?php echo $producto[TABLE_PRODUCTO_PRECIO]; ?></td>
+                                        <td class="precioTachado">$ <?php //echo $producto[TABLE_PRODUCTO_PRECIO];  ?></td>
                                     </tr>
                                     <tr>
                                         <td><strong>Descuento: </strong></td>
-                                        <td class="descuento"><?php echo $producto[TABLE_PRODUCTO_DESCUENTO]; ?> %</td>    
+                                        <td class="descuento"><?php //echo $producto[TABLE_PRODUCTO_DESCUENTO];  ?> %</td>
                                     </tr>
                                     <tr>
                                         <td><strong>Precio final: </strong></td>
-                                        <td class="precio"><strong>$ <?php echo $producto["precioFinal"]; ?></strong></td>
+                                        <td class="precio"><strong>$ <?php //echo $producto["precioFinal"];  ?></strong></td>
                                     </tr>-->
                                 <?php //else: ?>
-                                    <tr>
-                                        <td><strong>Precio: </strong></td>
-                                        <td class="precio">$ <?php echo $producto[TABLE_PRODUCTO_PRECIO]; ?></td>
-                                    </tr>
-                                <?php //endif; ?>
-<!--                                <tr>
-                                    <td><strong>Categoria: </strong></td>
-                                    <td><?php //echo $producto[TABLE_CATEGORIA]; ?></td>
-                                </tr>
                                 <tr>
-                                    <td><strong>Subcategoria: </strong></td>
-                                    <td><?php //echo $producto[TABLE_PRODUCTO_ID_SUBCATEGORIA]; ?></td>
-                                </tr>-->
+                                    <td><strong>Precio: </strong></td>
+                                    <td class="precio">$ <?php echo number_format($producto[TABLE_PRODUCTO_PRECIO]); ?></td>
+                                </tr>
+                                <?php //endif; ?>
+    <!--                                <tr>
+                                <td><strong>Categoria: </strong></td>
+                                <td><?php //echo $producto[TABLE_CATEGORIA];  ?></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Subcategoria: </strong></td>
+                                <td><?php //echo $producto[TABLE_PRODUCTO_ID_SUBCATEGORIA];  ?></td>
+                            </tr>-->
                             </table>
                         </div>
                     </div>
@@ -106,7 +110,7 @@
                 <br/>
                 <?php if ($totalPages > 0): ?>
                     <div id="paginador" class="ui-widget-content">
-                        Pagina: 
+                        Pagina:
                         <?php for ($i = 1; $i <= $totalPages; $i++): ?>
                             <?php echo anchor($module . $i, $i . "&nbsp;"); ?>
                         <?php endfor; ?>
@@ -182,7 +186,7 @@
                 <h3 class="ui-widget-header ui-corner-all">
                     Doctor Valenzuela 67, Col. Doctores, México, D.F. C.P. 06720.
                     <br/>
-                    Tel: (52) (55) 5761 8211, Fax: (52) (55) 5761 5521, ventas@raklyn.com.mx 
+                    Tel: (52) (55) 5761 8211, Fax: (52) (55) 5761 5521, ventas@raklyn.com.mx
                     <br/>
                     Derechos Reservados Raklyn de México, S.A. de C.V. 2011 | Desarrollo por www.mair3d.com.mx
                 </h3>

@@ -4,7 +4,7 @@ $(document).ready(function () {
         colModel: [
         {
             name:'id',
-            index:'id', 
+            index:'id',
             width:1,
             hidden:true,
             key:true
@@ -17,7 +17,7 @@ $(document).ready(function () {
             expanded: true
         }
         ],
-        url: base_url + "/productos/tree",
+        url: base_url + "/welcome/tree",
         caption: "Menu de categorias",
         treedatatype: "xml",
         hidegrid: false,
@@ -32,7 +32,7 @@ $(document).ready(function () {
             leaf:'ui-icon-bullet'
         }
     });
-    
+
     $("#realizarPedido").button().click(function (){
         $.ajax({
             url: base_url + "/carrito/welcome/checkout",
@@ -44,14 +44,14 @@ $(document).ready(function () {
             }
         });
     });
-    
+
     $(".removeProducto").button();
-    
+
     $(".qtySpinner").spinner({
-        min: 1, 
+        min: 1,
         max: 100
     });
-    
+
     $("#pedido").dialog({
         modal: true,
         autoOpen: false,
@@ -84,6 +84,6 @@ function updateProducto(rowid) {
             success: function (data) {
                 location.reload(1);
             }
-        });   
+        });
     }
 }
