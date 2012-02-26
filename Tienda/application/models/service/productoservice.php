@@ -261,23 +261,45 @@ class ProductoService extends CI_Model {
         return $gridModel;
     }
 
-    public function searchByTerm($term) {
-        $productos = $this->productoDao->searchByTerm($term);
+    public function searchByTerm($term, $page, $rows) {
+        $cuenta = $this->productoDao->countByTerm($term);
+        $totalPages = $cuenta > 0 ? ceil($cuenta / $rows) : 0;
+        $page = $page > $totalPages ? $totalPages : $page;
+        $offset = $rows * $page - $rows;
+        $productos = $this->productoDao->searchByTerm($term, $rows, $offset);
         $response = array();
-        if (count($productos) > 0) {
-            foreach ($productos as $key => $producto) {
-                $response[$key] = new stdClass();
-                $response[$key]->label = $producto->getModelo();
-                $response[$key]->value = $producto->getModelo();
-                $response[$key]->valor = $producto->getIdProducto();
+        $gridRows = array();
+        foreach ($productos as $key => $producto) {
+            $subcategoria = $this->subcategoriaDao->getById($producto->getIdSubcategoria());
+            $categoria = $this->categoriaDao->getById($subcategoria->getIdCategoria());
+            $color = $this->colorDao->getById($producto->getIdColor());
+            $gridRows[$key] = array();
+            $gridRows[$key][TABLE_CATEGORIA] = ($categoria != null) ? anchor(MODULE_PRODUCTOS_CATEGORIA . $categoria->getIdCategoria(), $categoria->getNombre()) : "";
+            $gridRows[$key][TABLE_PRODUCTO_ID_SUBCATEGORIA] = ($subcategoria != null) ? anchor(MODULE_PRODUCTOS_SUBCATEGORIA . $subcategoria->getIdSubCategoria(), $subcategoria->getNombre()) : "";
+            $gridRows[$key][TABLE_PRODUCTO_MODELO] = anchor(base_url(MODULE_PRODUCTOS_VER . $producto->getIdProducto()), $producto->getModelo());
+            $gridRows[$key][TABLE_PRODUCTO_DESCRIPCION] = $producto->getDescripcion();
+            $gridRows[$key][TABLE_PRODUCTO_PRECIO] = $producto->getPrecio();
+            $gridRows[$key][TABLE_PRODUCTO_DESCUENTO] = $producto->getDescuento();
+            $gridRows[$key][TABLE_PRODUCTO_ACTIVO] = $producto->getActivo();
+            $gridRows[$key]["precioFinal"] = $producto->getPrecio() - ($producto->getDescuento() * ($producto->getPrecio() / 100));
+            $gridRows[$key][TABLE_PRODUCTO_ID_COLOR] = ($color != null) ? $color->getNombre() : "";
+            if ($producto->getImagen() != "" && filter_var($producto->getImagen(), FILTER_VALIDATE_URL)) {
+                $image_properties = array(
+                    "src" => $producto->getImagen(),
+                    "width" => "150",
+                    "height" => "150",
+                    "class" => "imagenProductoPreview ui-corner-all"
+                );
+                $imagenHTML = img($image_properties);
+            } else {
+                $imagenHTML = "<strong>Imagen no disponible</strong>";
             }
-        } else {
-            $response = array();
-            $response[0] = new stdClass();
-            $response[0]->label = "No se encntraron resultados";
-            $response[0]->value = "No se encntraron resultados";
-            $response[0]->valor = 0;
+            $gridRows[$key]["imagenHtmlProducto"] = anchor(base_url(MODULE_PRODUCTOS_VER . $producto->getIdProducto()), $imagenHTML);
         }
+
+        $response["productos"] = $gridRows;
+        $response["page"] = $page;
+        $response["totalPages"] = $totalPages;
         return $response;
     }
 

@@ -148,7 +148,7 @@ class ProductoDao extends CI_Model {
 
     }
 
-    public function searchByTerm($term) {
+    public function searchByTerm($term, $limit, $offset) {
         $this->db->join("subcategoria as s", "p.idSubcategoria = s.idSubcategoria");
         $this->db->join("categoria as c", "s.idCategoria = s.idCategoria");
         $this->db->like("p.modelo", $term, "both");
@@ -166,10 +166,31 @@ class ProductoDao extends CI_Model {
             p.descuento AS descuento,
             p.activo AS activo
         ", false);
-
-        $query = $this->db->get("producto AS p");
+        $query = $this->db->get("producto AS p", $limit, $offset);
         return $this->_getResult($query->result());
 
+    }
+
+    public function countByTerm($term) {
+        $this->db->join("subcategoria as s", "p.idSubcategoria = s.idSubcategoria");
+        $this->db->join("categoria as c", "s.idCategoria = s.idCategoria");
+        $this->db->like("p.modelo", $term, "both");
+        $this->db->or_like('s.nombre', $term, "both");
+        $this->db->or_like('c.nombre', $term, "both");
+        $this->db->select("
+            p.idProducto AS idProducto,
+            p.modelo AS modelo,
+            p.descripcion AS descripcion,
+            p.idSubcategoria AS idSubcategoria,
+            p.imagen AS imagen,
+            p.idColor AS idColor,
+            p.Precio AS precio,
+            p.destacado AS destacado,
+            p.descuento AS descuento,
+            p.activo AS activo
+        ", false);
+        $query = $this->db->get("producto AS p");
+        return count($this->_getResult($query->result()));
     }
 
     public function searchByExamplePagedCategoria($idCategoria, Producto $producto,

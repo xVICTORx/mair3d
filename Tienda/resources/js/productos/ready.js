@@ -4,7 +4,7 @@ $(document).ready(function () {
         colModel: [
         {
             name:'id',
-            index:'id', 
+            index:'id',
             width:1,
             hidden:true,
             key:true
@@ -32,13 +32,13 @@ $(document).ready(function () {
             leaf:'ui-icon-bullet'
         }
     });
-    
+
     $("#checkOut").button().click(function () {
         window.location = base_url + "/carrito";
     });
-    
+
     $(".removeProducto").button();
-    
+
     $("#loginButton").button({
         icons: {
             secondary: 'ui-icon-key'
@@ -46,7 +46,7 @@ $(document).ready(function () {
     }).click(function () {
         login();
     });
-    
+
     $("#closeSession").button(function (){
         icons: {
             secondary: 'ui-icon-close'
@@ -61,7 +61,7 @@ $(document).ready(function () {
             }
         })
     });
-    
+
     $("#registerButton").button({
         icons: {
             secondary: 'ui-icon-pencil'
@@ -69,17 +69,11 @@ $(document).ready(function () {
     }).click(function () {
         window.location = base_url + "/registro";
     });
-    
-    $('#buscador').autocomplete({
-        source: base_url + "/welcome/buscar",
-        minLength: 2,
-        select: function( event, ui ) {
-            if(ui.item.valor != 0) {
-                window.location = base_url + "/welcome/ver/" + ui.item.valor;
-            }
-        }
+
+    $('#buscar').button({icons: {primary: 'ui-icon-search'}}).click(function() {
+        window.location = base_url + "/welcome/buscar/" +$('#buscador').val();
     });
-    
+
     $('ul.thumb li').Zoomer({
         speedView:200,
         speedRemove:400,
@@ -87,7 +81,7 @@ $(document).ready(function () {
         speedTitle:0,
         debug:false
     });
-    
+
 });
 
 function removeProducto(rowid) {
@@ -111,15 +105,15 @@ function login() {
         data.login = $("#login").val();
         data.pass = $("#pass").val();
         $.blockUI({
-            css: { 
-                border: 'none', 
-                padding: '15px', 
-                backgroundColor: '#000', 
-                '-webkit-border-radius': '10px', 
-                '-moz-border-radius': '10px', 
-                opacity: .4, 
-                color: '#fff' 
-            }, 
+            css: {
+                border: 'none',
+                padding: '15px',
+                backgroundColor: '#000',
+                '-webkit-border-radius': '10px',
+                '-moz-border-radius': '10px',
+                opacity: .4,
+                color: '#fff'
+            },
             message: '<h3>Autentificando, por favor espere...</h3>'
         });
         $.ajax({

@@ -126,14 +126,8 @@ $(document).ready(function() {
         }
     });
 
-    $('#buscador').autocomplete({
-        source: base_url + "/welcome/buscar",
-        minLength: 2,
-        select: function( event, ui ) {
-            if(ui.item.valor != 0) {
-                window.location = base_url + "/welcome/ver/" + ui.item.valor;
-            }
-        }
+    $('#buscar').button({icons: {primary: 'ui-icon-search'}}).click(function() {
+        window.location = base_url + "/welcome/buscar/" +$('#buscador').val();
     });
 });
 

@@ -52,6 +52,7 @@
                     <span style="float: right;">
                         <label for="buscador">Buscador: </label>
                         <input type="text" style="height: 10px; width: 150px; margin-top: -2px;" class="ui-widget-content ui-corner-all" id="buscador" placeholder="Buscar un producto..."/>
+                        <button id="buscar" style="height: 19px; margin-top: -2px; font-size: 9px;">Buscar</button>
                     </span>
                 </h3>
             </div>

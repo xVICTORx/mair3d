@@ -21,9 +21,9 @@ class Welcome extends CI_Controller {
 
     public function tree() {
         $vars = array();
-        if(isset($_GET["categoria"])) {
+        if (isset($_GET["categoria"])) {
             $vars["menuNodes"] = $this->productoService->getMenuNodes($_GET["categoria"]);
-        } else  {
+        } else {
             $vars["menuNodes"] = $this->productoService->getMenuNodes();
         }
         $this->load->view(VIEW_PRODUCTOS_TREE, $vars);
@@ -126,10 +126,10 @@ class Welcome extends CI_Controller {
                     $vars["colores"][$key]["imagen"] = null;
                 }
                 $image_properties = array(
-                        "src" => $color["imagenColor"],
-                        "width" => "40",
-                        "height" => "20",
-                        "alt" => $color["nombre"]
+                    "src" => $color["imagenColor"],
+                    "width" => "40",
+                    "height" => "20",
+                    "alt" => $color["nombre"]
                 );
                 $vars["categoria"] = $categoria->getIdCategoria();
                 $vars["colores"][$key]["imagenLink"] = $color["imagen"];
@@ -143,13 +143,19 @@ class Welcome extends CI_Controller {
             $this->load->view(VIEW_PRODUCTOS_VER, $vars);
         }
     }
-    
+
     public function buscar() {
-        if(isset($_GET["term"])) {
-            echo json_encode($this->productoService->searchByTerm($_GET["term"]));
-        } else  {
-            echo "Sorry";
-        }
+        $term = urldecode($this->uri->segment(3));
+        $page = $this->uri->segment(4);
+        $response = $this->productoService->searchByTerm($term, $page, 6);
+        $vars["productos"] = $response["productos"];
+        $vars["totalPages"] = $response["totalPages"];
+        $vars["module"] = "welcome/buscar/". $term . "/";
+        $vars["titulo"] = "Busqueda " . $term;
+        $productos = $this->cartService->getContenido();
+        $vars["productosCarrito"] = $productos;
+        $vars["categoria"] = 0;
+        $this->load->view(VIEW_PRODUCTOS_WELCOME, $vars);
     }
 
 }
