@@ -3,20 +3,20 @@ $(document).ready(function() {
     $("#treeMenu").jqGrid({
         colnames: ["Categorias"],
         colModel: [
-            {
-                name:'id',
-                index:'id',
-                width:1,
-                hidden:true,
-                key:true
-            },
-            {
-                name: "Categorias",
-                index: "Categorias",
-                width: 140,
-                sortable: false,
-                expanded: true
-            }
+        {
+            name:'id',
+            index:'id',
+            width:1,
+            hidden:true,
+            key:true
+        },
+        {
+            name: "Categorias",
+            index: "Categorias",
+            width: 140,
+            sortable: false,
+            expanded: true
+        }
         ],
         url: base_url + "/welcome/tree?categoria="+categoria,
         caption: "Menu de categorias",
@@ -41,9 +41,9 @@ $(document).ready(function() {
     $(".removeProducto").button();
 
     $("#send").button().click(
-    function() {
-        registrarse();
-    });
+        function() {
+            registrarse();
+        });
 
     $("#loginButton").button({
         icons: {
@@ -62,41 +62,39 @@ $(document).ready(function() {
     });
 
     $("#login1").change(function () {
-        if(validateCorreo()){
-            $.blockUI({
-                css: {
-                    border: 'none',
-                    padding: '15px',
-                    backgroundColor: '#000',
-                    '-webkit-border-radius': '10px',
-                    '-moz-border-radius': '10px',
-                    opacity: .4,
-                    color: '#fff'
-                },
-                message: '<h3>Validando correo, por favor espere...</h3>'
-            });
-            $.ajax({
-                url: base_url + "/registro/checkCorreo",
-                type: 'post',
-                async: true,
-                dataType: 'json',
-                data: {
-                    correo: $("#login1").val()
-                },
-                success: function (data) {
-                    $.unblockUI();
-                    if(data.estatus == 0){
-                        $("#indicador").val(data.estatus);
-                        $("#errorFrm1").removeClass('ui-state-highlight').show('');
-                        $("#login1").removeClass('ui-state-error');
-                    } else {
-                        $("#indicador").val(data.estatus);
-                        $("#errorFrm1").addClass('ui-state-highlight').html(data.mensaje).show('');
-                        $("#login1").addClass('ui-state-error');
-                    }
+        $.blockUI({
+            css: {
+                border: 'none',
+                padding: '15px',
+                backgroundColor: '#000',
+                '-webkit-border-radius': '10px',
+                '-moz-border-radius': '10px',
+                opacity: .4,
+                color: '#fff'
+            },
+            message: '<h3>Validando nombre de usuario, por favor espere...</h3>'
+        });
+        $.ajax({
+            url: base_url + "/registro/checkLogin",
+            type: 'post',
+            async: true,
+            dataType: 'json',
+            data: {
+                login: $("#login1").val()
+            },
+            success: function (data) {
+                $.unblockUI();
+                if(data.estatus == 0){
+                    $("#indicador").val(data.estatus);
+                    $("#errorFrm1").removeClass('ui-state-highlight').show('');
+                    $("#login1").removeClass('ui-state-error');
+                } else {
+                    $("#indicador").val(data.estatus);
+                    $("#errorFrm1").addClass('ui-state-highlight').html(data.mensaje).show('');
+                    $("#login1").addClass('ui-state-error');
                 }
-            });
-        }
+            }
+        });
     });
 
     $("#closeSession").button(function (){
@@ -126,27 +124,14 @@ $(document).ready(function() {
         }
     });
 
-    $('#buscar').button({icons: {primary: 'ui-icon-search'}}).click(function() {
+    $('#buscar').button({
+        icons: {
+            primary: 'ui-icon-search'
+        }
+    }).click(function() {
         window.location = base_url + "/welcome/buscar/" +$('#buscador').val();
     });
 });
-
-
-function validateCorreo() {
-    if($("#login1").val() == "" || $("#login1").val() == " ") {
-        $("#errorFrm1").addClass('ui-state-highlight').html('Escriba su correo electronico').show('');
-        $("#login1").addClass('ui-state-error').focus();
-        return false;
-    } else if(!(/^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,3})$/.test($("#login1").val()))) {
-        $("#errorFrm1").addClass('ui-state-highlight').html('Escriba un correo electronico valido ejemplo@dominio.com').show('');
-        $("#login1").addClass('ui-state-error').focus();
-        return false;
-    } else {
-        $("#errorFrm1").removeClass('ui-state-highlight').html('').show('');
-        $("#login1").removeClass('ui-state-error');
-    }
-    return true;
-}
 
 function removeProducto(rowid) {
     $.ajax({
@@ -183,35 +168,75 @@ function registrarse () {
         data.nombre = $("#nombre").val();
         data.apPaterno = $("#apPaterno").val();
         data.apMaterno = $("#apMaterno").val();
+        data.nombreEmpresa = $("#nombreEmpresa").val();
         data.telefono = $("#telefono").val();
+        data.email = $("#email").val();
+        data.razonSocial = $("#razonSocial").val();
+        data.rfc = $("#rfc").val();
         data.calle = $("#calle").val();
+        data.numero = $("#numero").val();
         data.colonia = $("#colonia").val();
-        data.cp = $("#cp").val();
         data.municipio = $("#municipio").val();
         data.estado = $("#estado").val();
-        data.pais = $("#pais").val();
-
+        data.cp = $("#cp").val();
+        data.email2 = $("#email2").val();
         data.calleEnvio = $("#calleEnvio").val();
+        data.numeroExtEnvio = $("#numeroExtEnvio").val();
+        data.numeroIntEnvio = $("#numeroIntEnvio").val();
         data.coloniaEnvio = $("#coloniaEnvio").val();
         data.cpEnvio = $("#cpEnvio").val();
         data.municipioEnvio = $("#municipioEnvio").val();
         data.estadoEnvio = $("#estadoEnvio").val();
-        data.paisEnvio = $("#paisEnvio").val();
         $.ajax({
             url: base_url + "/registro/nuevo",
             type: "post",
             datatype: "html",
             data: data,
             success: function (respuesta) {
-                //window.location = base_url + "/welcome";
+             window.location = base_url + "/welcome";
             }
         });
     }
 }
 
 function validarFormulario () {
+
+    $.blockUI({
+        css: {
+            border: 'none',
+            padding: '15px',
+            backgroundColor: '#000',
+            '-webkit-border-radius': '10px',
+            '-moz-border-radius': '10px',
+            opacity: .4,
+            color: '#fff'
+        },
+        message: '<h3>Validando nombre de usuario, por favor espere...</h3>'
+    });
+    $.ajax({
+        url: base_url + "/registro/checkLogin",
+        type: 'post',
+        async: false,
+        dataType: 'json',
+        data: {
+            login: $("#login1").val()
+        },
+        success: function (data) {
+            $.unblockUI();
+            if(data.estatus == 0){
+                $("#indicador").val(data.estatus);
+                $("#errorFrm1").removeClass('ui-state-highlight').show('');
+                $("#login1").removeClass('ui-state-error');
+            } else {
+                $("#indicador").val(data.estatus);
+                $("#errorFrm1").addClass('ui-state-highlight').html(data.mensaje).show('');
+                $("#login1").addClass('ui-state-error');
+            }
+        }
+    });
+
     if($("#indicador").val() == 1) {
-        $("#errorFrm1").addClass('ui-state-highlight').html('Este correo ya esta registrado').show('');
+        $("#errorFrm1").addClass('ui-state-highlight').html('Este nombre de usuario ya esta registrado').show('');
         $("#login1").addClass('ui-state-error').focus();
         return false;
     } else {
@@ -219,11 +244,7 @@ function validarFormulario () {
         $("#login1").removeClass('ui-state-error');
     }
     if($("#login1").val() == "" || $("#login1").val() == " ") {
-        $("#errorFrm1").addClass('ui-state-highlight').html('Escriba su correo electronico').show('');
-        $("#login1").addClass('ui-state-error').focus();
-        return false;
-    } else if(!(/^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,3})$/.test($("#login1").val()))) {
-        $("#errorFrm1").addClass('ui-state-highlight').html('Escriba un correo electronico valido ejemplo@dominio.com').show('');
+        $("#errorFrm1").addClass('ui-state-highlight').html('Escriba su nombre de usuario').show('');
         $("#login1").addClass('ui-state-error').focus();
         return false;
     } else {
@@ -273,13 +294,13 @@ function validarFormulario () {
         $("#apMaterno").removeClass('ui-state-error');
     }
 
-    if($("#nombre").val() == "" || $("#nombre").val() == " ") {
-        $("#errorFrm1").addClass('ui-state-highlight').html('Escriba su nombre').show('');
-        $("#nombre").addClass('ui-state-error').focus();
+    if($("#nombreEmpresa").val() == "" || $("#nombreEmpresa").val() == " ") {
+        $("#errorFrm1").addClass('ui-state-highlight').html('Escriba el nombre de la empresa').show('');
+        $("#nombreEmpresa").addClass('ui-state-error').focus();
         return false;
     } else {
         $("#errorFrm1").removeClass('ui-state-highlight').html('').show('');
-        $("#nombre").removeClass('ui-state-error');
+        $("#nombreEmpresa").removeClass('ui-state-error');
     }
 
     if($("#telefono").val() == "" || $("#telefono").val() == " ") {
@@ -291,6 +312,37 @@ function validarFormulario () {
         $("#telefono").removeClass('ui-state-error');
     }
 
+    if($("#email").val() == "" || $("#email").val() == " ") {
+        $("#errorFrm1").addClass('ui-state-highlight').html('Escriba su correo electronico').show('');
+        $("#email").addClass('ui-state-error').focus();
+        return false;
+    } else if(!(/^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,3})$/.test($("#email").val()))) {
+        $("#errorFrm1").addClass('ui-state-highlight').html('Escriba un correo electronico valido ejemplo@dominio.com').show('');
+        $("#email").addClass('ui-state-error').focus();
+        return false;
+    } else {
+        $("#errorFrm1").removeClass('ui-state-highlight').html('').show('');
+        $("#email").removeClass('ui-state-error');
+    }
+
+    if($("#razonSocial").val() == "" || $("#razonSocial").val() == " ") {
+        $("#errorFrm1").addClass('ui-state-highlight').html('Escriba la razon social').show('');
+        $("#razonSocial").addClass('ui-state-error').focus();
+        return false;
+    } else {
+        $("#errorFrm1").removeClass('ui-state-highlight').html('').show('');
+        $("#razonSocial").removeClass('ui-state-error');
+    }
+
+    if($("#rfc").val() == "" || $("#rfc").val() == " ") {
+        $("#errorFrm1").addClass('ui-state-highlight').html('Escriba el R.F.C.').show('');
+        $("#rfc").addClass('ui-state-error').focus();
+        return false;
+    } else {
+        $("#errorFrm1").removeClass('ui-state-highlight').html('').show('');
+        $("#rfc").removeClass('ui-state-error');
+    }
+
     if($("#calle").val() == "" || $("#calle").val() == " ") {
         $("#errorFrm1").addClass('ui-state-highlight').html('Escriba la calle').show('');
         $("#calle").addClass('ui-state-error').focus();
@@ -300,6 +352,15 @@ function validarFormulario () {
         $("#calle").removeClass('ui-state-error');
     }
 
+    if($("#numero").val() == "" || $("#numero").val() == " ") {
+        $("#errorFrm1").addClass('ui-state-highlight').html('Escriba el numero').show('');
+        $("#numero").addClass('ui-state-error').focus();
+        return false;
+    } else {
+        $("#errorFrm1").removeClass('ui-state-highlight').html('').show('');
+        $("#numero").removeClass('ui-state-error');
+    }
+
     if($("#colonia").val() == "" || $("#colonia").val() == " ") {
         $("#errorFrm1").addClass('ui-state-highlight').html('Escriba la colonia').show('');
         $("#colonia").addClass('ui-state-error').focus();
@@ -307,6 +368,24 @@ function validarFormulario () {
     } else {
         $("#errorFrm1").removeClass('ui-state-highlight').html('').show('');
         $("#colonia").removeClass('ui-state-error');
+    }
+
+    if($("#municipio").val() == "" || $("#municipio").val() == " ") {
+        $("#errorFrm1").addClass('ui-state-highlight').html('Escriba el municipio').show('');
+        $("#municipio").addClass('ui-state-error').focus();
+        return false;
+    } else {
+        $("#errorFrm1").removeClass('ui-state-highlight').html('').show('');
+        $("#municipio").removeClass('ui-state-error');
+    }
+
+    if($("#estado").val() == "" || $("#municipio").val() == " ") {
+        $("#errorFrm1").addClass('ui-state-highlight').html('Escriba el estado').show('');
+        $("#estado").addClass('ui-state-error').focus();
+        return false;
+    } else {
+        $("#errorFrm1").removeClass('ui-state-highlight').html('').show('');
+        $("#estado").removeClass('ui-state-error');
     }
 
     if($("#cp").val() == "" || $("#cp").val() == " ") {
@@ -322,32 +401,19 @@ function validarFormulario () {
         $("#cp").removeClass('ui-state-error');
     }
 
-    if($("#municipio").val() == "" || $("#municipio").val() == " ") {
-        $("#errorFrm1").addClass('ui-state-highlight').html('Escriba el municipio o delegacion').show('');
-        $("#municipio").addClass('ui-state-error').focus();
+    if($("#email2").val() == "" || $("#email2").val() == " ") {
+        $("#errorFrm1").addClass('ui-state-highlight').html('Escriba su correo electronico').show('');
+        $("#email2").addClass('ui-state-error').focus();
+        return false;
+    } else if(!(/^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,3})$/.test($("#email2").val()))) {
+        $("#errorFrm1").addClass('ui-state-highlight').html('Escriba un correo electronico valido ejemplo@dominio.com').show('');
+        $("#email2").addClass('ui-state-error').focus();
         return false;
     } else {
         $("#errorFrm1").removeClass('ui-state-highlight').html('').show('');
-        $("#municipio").removeClass('ui-state-error');
+        $("#email2").removeClass('ui-state-error');
     }
 
-    if($("#estado").val() == "" || $("#estado").val() == " ") {
-        $("#errorFrm1").addClass('ui-state-highlight').html('Escriba el estado').show('');
-        $("#estado").addClass('ui-state-error').focus();
-        return false;
-    } else {
-        $("#errorFrm1").removeClass('ui-state-highlight').html('').show('');
-        $("#estado").removeClass('ui-state-error');
-    }
-
-    if($("#pais").val() == "" || $("#pais").val() == " ") {
-        $("#errorFrm1").addClass('ui-state-highlight').html('Escriba el pais').show('');
-        $("#pais").addClass('ui-state-error').focus();
-        return false;
-    } else {
-        $("#errorFrm1").removeClass('ui-state-highlight').html('').show('');
-        $("#pais").removeClass('ui-state-error');
-    }
     if($(":radio[name='direccion']:checked").attr('value') == "NO") {
         if($("#calleEnvio").val() == "" || $("#calleEnvio").val() == " ") {
             $("#errorFrm1").addClass('ui-state-highlight').html('Escriba la calle').show('');

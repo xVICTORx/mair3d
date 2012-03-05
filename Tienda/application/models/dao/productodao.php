@@ -150,12 +150,12 @@ class ProductoDao extends CI_Model {
 
     public function searchByTerm($term, $limit, $offset) {
         $this->db->join("subcategoria as s", "p.idSubcategoria = s.idSubcategoria");
-        $this->db->join("categoria as c", "s.idCategoria = s.idCategoria");
+        $this->db->join("categoria as c", "s.idCategoria = c.idCategoria");
         $this->db->like("p.modelo", $term, "both");
         $this->db->or_like('s.nombre', $term, "both");
         $this->db->or_like('c.nombre', $term, "both");
         $this->db->select("
-            p.idProducto AS idProducto,
+            DISTINCT(p.idProducto) AS idProducto,
             p.modelo AS modelo,
             p.descripcion AS descripcion,
             p.idSubcategoria AS idSubcategoria,
@@ -167,6 +167,7 @@ class ProductoDao extends CI_Model {
             p.activo AS activo
         ", false);
         $query = $this->db->get("producto AS p", $limit, $offset);
+		//echo $this->db->last_query();
         return $this->_getResult($query->result());
 
     }
@@ -197,7 +198,7 @@ class ProductoDao extends CI_Model {
             $orderBy = "idProducto", $order = "asc", $limit = 20, $offset = 0) {
 
         $this->db->join("subcategoria as s", "p.idSubcategoria = s.idSubcategoria");
-        $this->db->join("categoria as c", "s.idCategoria = s.idCategoria");
+        $this->db->join("categoria as c", "s.idCategoria = c.idCategoria");
         $this->db->where("c.idCategoria", $idCategoria);
 
         $this->db->like("p.descripcion", $producto->getDescripcion(), LIKE_AFTER);
@@ -236,8 +237,8 @@ class ProductoDao extends CI_Model {
             p.descuento AS descuento,
             p.activo AS activo
         ", false);
-
         $query = $this->db->get("producto AS p", $limit, $offset);
+		//echo $this->db->last_query();
         return $this->_getResult($query->result());
 
     }

@@ -1,5 +1,7 @@
 $(document).ready(function () {
     var options = {
+        width: 500,
+        labelswidth: "40%",
         addCaption: "Agregar un cliente",
         editCaption: "Modificar cliente",
         bSubmit: "Guardar cliente",
@@ -28,7 +30,7 @@ $(document).ready(function () {
         }
     };
     $("#clientesGrid").jqGrid({
-        colNames: ["idCliente", "Nombre", "Ap Paterno", "Ap Materno", "Telefono", "Calle", "Colonia", "Municipio", "Estado", "Pais", "CP", "Correo", "Otra Direccion", "Calle Envio", "Colonia Envio", "Municipio Envio", "Estado Envio", "Pais Envio", "CP Envio"],
+        colNames: ["idCliente", "Nombre", "Ap Paterno", "Ap Materno", "Nombre empresa", "Telefono", "Correo Electronico","Razon social","R.F.C.","Calle", "Numero","Colonia", "Municipio", "Estado", "CP", "Nombre de Usuario", "Correo Electronico Factura", "Calle Envio", "Numero Exterior Envio","Numero Interior Envio" ,"Colonia Envio", "Municipio Envio", "Estado Envio", "CP Envio"],
         colModel: [
         {
             name: "id",
@@ -52,13 +54,38 @@ $(document).ready(function () {
             editable: true
         },
         {
+            name: "nombreEmpresa",
+            index: "nombreEmpresa",
+            editable: true
+        },
+        {
             name: "telefono",
             index: "telefono",
             editable: true
         },
         {
-            name: "calleNumero",
-            index: "calleNumero",
+            name: "email",
+            index: "email",
+            editable: true
+        },
+        {
+            name: "razonSocial",
+            index: "razonSocial",
+            editable: true
+        },
+        {
+            name: "rfc",
+            index: "rfc",
+            editable: true
+        },
+        {
+            name: "calle",
+            index: "calle",
+            editable: true
+        },
+        {
+            name: "numero",
+            index: "numero",
             editable: true
         },
         {
@@ -77,11 +104,6 @@ $(document).ready(function () {
             editable: true
         },
         {
-            name: "pais",
-            index: "pais",
-            editable: true
-        },
-        {
             name: "cp",
             index: "cp",
             editable: true
@@ -92,13 +114,38 @@ $(document).ready(function () {
             editable: true
         },
         {
-            name: "otraDireccion",
-            index: "otraDireccion",
-            editable: true
+            name: "email2",
+            index: "email2",
+            editable: true,
+            viewable: true,
+            hidden: true,
+            editrules: {
+                edithidden: true
+            }
         },
         {
-            name: "calleNumeroEnvio",
-            index: "calleNumeroEnvio",
+            name: "calleEnvio",
+            index: "calleEnvio",
+            editable: true,
+            viewable: true,
+            hidden: true,
+            editrules: {
+                edithidden: true
+            }
+        },
+        {
+            name: "numeroExtEnvio",
+            index: "numeroExtEnvio",
+            editable: true,
+            viewable: true,
+            hidden: true,
+            editrules: {
+                edithidden: true
+            }
+        },
+        {
+            name: "numeroIntEnvio",
+            index: "numeroIntEnvio",
             editable: true,
             viewable: true,
             hidden: true,
@@ -137,16 +184,6 @@ $(document).ready(function () {
             }
         },
         {
-            name: "paisEnvio",
-            index: "paisEnvio",
-            editable: true,
-            viewable: true,
-            hidden: true,
-            editrules: {
-                edithidden: true
-            }
-        },
-        {
             name: "cpEnvio",
             index: "cpEnvio",
             editable: true,
@@ -164,6 +201,7 @@ $(document).ready(function () {
         pager : "#clientesPager",
         sortname : "idCliente",
         rowNum : 10,
+        shrinkToFit: false,
         rowList : [ 10, 20, 30 ],
         viewrecords : true,
         rownumbers : true,
@@ -190,6 +228,9 @@ $(document).ready(function () {
             viewtext: "Ver",
             refreshtext: "Actualizar"
         },
+        options,
+        options,
+        options,
         options,
         options
     );

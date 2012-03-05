@@ -34,18 +34,22 @@ class Welcome extends CI_Controller {
     }
 
     private function _load() {
-        $nombre = isset($_GET[TABLE_CLIENTE_NOMBRE]) ? $_GET[TABLE_CLIENTE_NOMBRE] : "";
-        $apPaterno = isset($_GET[TABLE_CLIENTE_AP_PATERNO]) ? $_GET[TABLE_CLIENTE_AP_PATERNO] : "";
-        $apMaterno = isset($_GET[TABLE_CLIENTE_AP_MATERNO]) ? $_GET[TABLE_CLIENTE_AP_MATERNO] : "";
-        $telefono = isset($_GET[TABLE_CLIENTE_TELEFONO]) ? $_GET[TABLE_CLIENTE_TELEFONO] : "";
-        $calleNumero = isset($_GET[TABLE_CLIENTE_CALLE_NUMERO]) ? $_GET[TABLE_CLIENTE_CALLE_NUMERO] : "";
+        $nombre = isset($_GET["nombre"]) ? $_GET["nombre"] : "";
+        $apPaterno = isset($_GET["apPaterno"]) ? $_GET["apPaterno"] : "";
+        $apMaterno = isset($_GET["apMaterno"]) ? $_GET["apMaterno"] : "";
+        $nombreEmpresa = isset($_GET["nombreEmpresa"]) ? $_GET["nombreEmpresa"] : "";
+        $telefono = isset($_GET["telefono"]) ? $_GET["telefono"] : "";
+        $email = isset($_GET["email"]) ? $_GET["email"] : "";
+        $razonSocial = isset($_GET["razonSocial"]) ? $_GET["razonSocial"] : "";
+        $rfc = isset($_GET["rfc"]) ? $_GET["rfc"] : "";
+        $calle = isset($_GET["calle"]) ? $_GET["calle"] : "";
+        $numero = isset($_GET["numero"]) ? $_GET["numero"] : "";
         $colonia = isset($_GET[TABLE_CLIENTE_COLONIA]) ? $_GET[TABLE_CLIENTE_COLONIA] : "";
         $municipio = isset($_GET[TABLE_CLIENTE_MUNICIPIO]) ? $_GET[TABLE_CLIENTE_MUNICIPIO] : "";
         $estado = isset($_GET[TABLE_CLIENTE_ESTADO]) ? $_GET[TABLE_CLIENTE_ESTADO] : "";
-        $pais = isset($_GET[TABLE_CLIENTE_PAIS]) ? $_GET[TABLE_CLIENTE_PAIS] : "";
         $cp = isset($_GET[TABLE_CLIENTE_CP]) ? $_GET[TABLE_CLIENTE_CP] : "";
         $login = isset($_GET[TABLE_CLIENTE_LOGIN]) ? $_GET[TABLE_CLIENTE_LOGIN] : "";
-        $response = $this->clienteService->loadClientesPaged($nombre, $apPaterno, $apMaterno, $telefono, $calleNumero, $colonia, $municipio, $estado, $pais, $cp, $login, $_GET["sidx"], $_GET["sord"], $_GET["page"], $_GET["rows"]);
+        $response = $this->clienteService->loadClientesPaged($login, $nombre, $apPaterno, $apMaterno, $nombreEmpresa, $telefono, $email, $razonSocial, $rfc, $calle, $numero, $colonia, $municipio, $estado, $cp, $_GET["sidx"], $_GET["sord"], $_GET["page"], $_GET["rows"]);
         echo json_encode($response);
     }
 

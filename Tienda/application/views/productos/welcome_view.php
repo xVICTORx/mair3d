@@ -74,8 +74,7 @@
                         <div class="detalleProducto">
                             <table align="center" class="tableDetalleProducto">
                                 <tr>
-                                    <td><strong>Modelo: </strong></td>
-                                    <td><?php echo $producto[TABLE_PRODUCTO_MODELO]; ?></td>
+                                    <td style="text-align: center;"><?php echo $producto[TABLE_PRODUCTO_MODELO]; ?></td>
                                 </tr>
                                 <?php //if ($producto[TABLE_PRODUCTO_DESCUENTO] != 0): ?>
     <!--                                    <tr>
@@ -92,8 +91,7 @@
                                     </tr>-->
                                 <?php //else: ?>
                                 <tr>
-                                    <td><strong>Precio: </strong></td>
-                                    <td class="precio">$ <?php echo number_format($producto[TABLE_PRODUCTO_PRECIO]); ?></td>
+                                    <td class="precio">$ <?php echo number_format($producto[TABLE_PRODUCTO_PRECIO], 2); ?></td>
                                 </tr>
                                 <?php //endif; ?>
     <!--                                <tr>
@@ -154,10 +152,10 @@
                                 <td id="errorFrm" colspan="2"></td>
                             </tr>
                             <tr>
-                                <td colspan="2">Correo electronico:</td>
+                                <td colspan="2">Nombre de Usuario:</td>
                             </tr>
                             <tr style="text-align: center">
-                                <td colspan="2"><input type="text" maxlength="50" name="login" id="login" class="ui-widget-content ui-corner-all inputForm" placeholder="ejemplo@dominio.com" autocomplete="off" /></td>
+                                <td colspan="2"><input type="text" maxlength="50" name="login" id="login" class="ui-widget-content ui-corner-all inputForm" placeholder="" autocomplete="off" /></td>
                             </tr>
                             <tr>
                                 <td colspan="2">Contraseña:</td>

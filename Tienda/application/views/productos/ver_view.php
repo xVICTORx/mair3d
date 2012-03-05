@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title><?php echo TITLE_TIENDA ?></title>
+        <title><?php echo TITLE_TIENDA . " " . $categoriatexto .  " - " . $subcategoriatexto . " - " . $modelo;?></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link href="<?php echo base_url(CSS_JQUERY) ?>" type="text/css" rel="stylesheet"/>
         <link href="<?php echo base_url(CSS_JQGRID) ?>" type="text/css" rel="stylesheet"/>
@@ -18,7 +18,7 @@
         <script src="<?php echo base_url(JS_JQUERY_ZOOMER) ?>" type="text/javascript"></script>
         <script type="text/javascript">
             var base_url = "<?php echo base_url() ?>index.php";
-            var categoria = <?php echo $categoria; ?>;
+            var categoria = <?php echo $categorianumero; ?>;
         </script>
         <script src="<?php echo base_url(JS_PRODUCTOS_WELCOME_READY) ?>" type="text/javascript"></script>
         <script src="<?php echo base_url(JS_PRODUCTOS_VER_READY) ?>" type="text/javascript"></script>
@@ -100,20 +100,20 @@
                         <?php if ($descuento != 0): ?>
                             <tr>
                                 <td><strong>Precio: </strong></td>
-                                <td class="precioTachado">$ <?php echo number_format($precio); ?></td>
+                                <td class="precioTachado">$ <?php echo number_format($precio, 2); ?></td>
                             </tr>
                             <tr>
                                 <td><strong>Descuento: </strong></td>
-                                <td class="descuento"><?php echo number_format($descuento); ?> %</td>
+                                <td class="descuento"><?php echo number_format($descuento, 2); ?> %</td>
                             </tr>
                             <tr>
                                 <td><strong>Precio final: </strong></td>
-                                <td class="precio"><strong>$ <?php echo number_format($precioFinal); ?></strong></td>
+                                <td class="precio"><strong>$ <?php echo number_format($precioFinal, 2); ?></strong></td>
                             </tr>
                         <?php else: ?>
                             <tr>
                                 <td><strong>Precio: </strong></td>
-                                <td class="precio">$ <?php echo number_format($precio); ?></td>
+                                <td class="precio">$ <?php echo number_format($precio, 2); ?></td>
                             </tr>
                         <?php endif; ?>
                         <tr>
@@ -192,10 +192,10 @@
                                 <td id="errorFrm" colspan="2"></td>
                             </tr>
                             <tr>
-                                <td colspan="2">Correo electronico:</td>
+                                <td colspan="2">Nombre de Usuario:</td>
                             </tr>
                             <tr style="text-align: center">
-                                <td colspan="2"><input type="text" maxlength="50" name="login" id="login" class="ui-widget-content ui-corner-all inputForm" placeholder="ejemplo@dominio.com" autocomplete="off" /></td>
+                                <td colspan="2"><input type="text" maxlength="50" name="login" id="login" class="ui-widget-content ui-corner-all inputForm" placeholder="" autocomplete="off" /></td>
                             </tr>
                             <tr>
                                 <td colspan="2">Contraseña:</td>

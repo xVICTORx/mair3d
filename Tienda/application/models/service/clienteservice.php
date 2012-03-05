@@ -9,11 +9,13 @@ class ClienteService extends CI_Model {
         $this->clienteDao = new ClienteDao();
     }
 
-    public function save($idCliente, $nombre, $apPaterno, $apMaterno, $telefono, $calleNumero, $colonia, $municipio, $estado, $pais, $cp, $login, $password, $calleNumeroEnvio, $coloniaEnvio, $municipioEnvio, $estadoEnvio, $paisEnvio, $cpEnvio) {
-        $cliente = new Cliente($idCliente, $nombre, $apPaterno, $apMaterno, $telefono, $calleNumero, $colonia, $municipio, $estado, $pais, $cp, $login, $password, $calleNumeroEnvio, $coloniaEnvio, $municipioEnvio, $estadoEnvio, $paisEnvio, $cpEnvio);
+    public function save($idCliente, $login, $pass, $nombre, $apPaterno, $apMaterno, $nombreEmpresa, $telefono, $email, $razonSocial, $rfc, $calle, $numero, $colonia, $municipio, $estado, $cp, $email2, $calleEnvio, $numeroExtEnvio, $numeroIntEnvio, $coloniaEnvio, $municipioEnvio, $estadoEnvio, $cpEnvio) {
+        $cliente = new Cliente($idCliente, $login, $pass, $nombre, $apPaterno, $apMaterno, $nombreEmpresa, $telefono, $email, $razonSocial, $rfc, $calle, $numero, $colonia, $municipio, $estado, $cp, $email2, $calleEnvio, $numeroExtEnvio, $numeroIntEnvio, $coloniaEnvio, $municipioEnvio, $estadoEnvio, $cpEnvio);
         $this->clienteDao->save($cliente);
         $this->session->set_userdata('idCliente', $cliente->getIdCliente());
         $this->session->set_userdata('login', $cliente->getLogin());
+        $this->session->set_userdata('email', $cliente->getEmail());
+        $this->session->set_userdata('email2', $cliente->getEmail2());
         $this->session->set_userdata('nombre', $cliente->getNombre());
         $this->session->set_userdata('apPaterno', $cliente->getApPaterno());
         $this->session->set_userdata('apMaterno', $cliente->getApMaterno());
@@ -22,11 +24,13 @@ class ClienteService extends CI_Model {
     public function login($login, $pass) {
         $cliente = $this->clienteDao->getByLogin($login);
         if ($cliente != null) {
-            if ($cliente->getPassword() == md5($pass)) {
+            if ($cliente->getPass() == md5($pass)) {
                 $response->estatus = 0;
                 $response->mensaje = "Datos correctos";
                 $this->session->set_userdata('idCliente', $cliente->getIdCliente());
                 $this->session->set_userdata('login', $cliente->getLogin());
+                $this->session->set_userdata('email', $cliente->getEmail());
+                $this->session->set_userdata('email2', $cliente->getEmail2());
                 $this->session->set_userdata('nombre', $cliente->getNombre());
                 $this->session->set_userdata('apPaterno', $cliente->getApPaterno());
                 $this->session->set_userdata('apMaterno', $cliente->getApMaterno());
@@ -49,8 +53,8 @@ class ClienteService extends CI_Model {
         return $this->clienteDao->getById($id);
     }
 
-    public function loadClientesPaged($nombre, $apPaterno, $apMaterno, $telefono, $calleNumero, $colonia, $municipio, $estado, $pais, $cp, $login, $orderBy, $order, $page, $rows) {
-        $cliente = new Cliente(null, $nombre, $apPaterno, $apMaterno, $telefono, $calleNumero, $colonia, $municipio, $estado, $pais, $cp, $login, "");
+    public function loadClientesPaged($login, $nombre, $apPaterno, $apMaterno, $nombreEmpresa, $telefono, $email, $razonSocial, $rfc, $calle, $numero, $colonia, $municipio, $estado, $cp, $orderBy, $order, $page, $rows) {
+        $cliente = new Cliente(null, $login, "", $nombre, $apPaterno, $apMaterno, $nombreEmpresa, $telefono, $email, $razonSocial, $rfc, $calle, $numero, $colonia, $municipio, $estado, $cp);
 
         $cuenta = $this->clienteDao->countByExample($cliente);
 
@@ -64,24 +68,29 @@ class ClienteService extends CI_Model {
         foreach ($clientes as $key => $cliente) {
             $gridRows[$key] = array();
             $gridRows[$key]["id"] = $cliente->getIdCliente();
-            $gridRows[$key][TABLE_CLIENTE_NOMBRE] = $cliente->getNombre();
-            $gridRows[$key][TABLE_CLIENTE_AP_MATERNO] = $cliente->getApMaterno();
-            $gridRows[$key][TABLE_CLIENTE_AP_PATERNO] = $cliente->getApPaterno();
-            $gridRows[$key][TABLE_CLIENTE_CALLE_NUMERO] = $cliente->getCalleNumero();
-            $gridRows[$key][TABLE_CLIENTE_COLONIA] = $cliente->getColonia();
-            $gridRows[$key][TABLE_CLIENTE_CP] = $cliente->getCp();
-            $gridRows[$key][TABLE_CLIENTE_ESTADO] = $cliente->getEstado();
-            $gridRows[$key][TABLE_CLIENTE_LOGIN] = $cliente->getLogin();
-            $gridRows[$key][TABLE_CLIENTE_MUNICIPIO] = $cliente->getMunicipio();
-            $gridRows[$key][TABLE_CLIENTE_PAIS] = $cliente->getPais();
-            $gridRows[$key][TABLE_CLIENTE_TELEFONO] = $cliente->getTelefono();
-            $gridRows[$key][TABLE_CLIENTE_CALLE_NUMERO_ENVIO] = $cliente->getCalleNumeroEnvio();
-            $gridRows[$key]["otraDireccion"] = ($cliente->getCalleNumeroEnvio() != "")? "SI" : "NO";
-            $gridRows[$key][TABLE_CLIENTE_COLONIA_ENVIO] = $cliente->getColoniaEnvio();
-            $gridRows[$key][TABLE_CLIENTE_CP_ENVIO] = $cliente->getCpEnvio();
-            $gridRows[$key][TABLE_CLIENTE_ESTADO_ENVIO] = $cliente->getEstadoEnvio();
-            $gridRows[$key][TABLE_CLIENTE_MUNICIPIO_ENVIO] = $cliente->getMunicipioEnvio();
-            $gridRows[$key][TABLE_CLIENTE_PAIS_ENVIO] = $cliente->getPaisEnvio();
+            $gridRows[$key]["nombre"] = $cliente->getNombre();
+            $gridRows[$key]["apPaterno"] = $cliente->getApPaterno();
+            $gridRows[$key]["apMaterno"] = $cliente->getApMaterno();
+            $gridRows[$key]["nombreEmpresa"] = $cliente->getNombreEmpresa();
+            $gridRows[$key]["telefono"] = $cliente->getTelefono();
+            $gridRows[$key]["email"] = $cliente->getEmail();
+            $gridRows[$key]["razonSocial"] = $cliente->getRazonSocial();
+            $gridRows[$key]["rfc"] = $cliente->getRfc();
+            $gridRows[$key]["calle"] = $cliente->getCalle();
+            $gridRows[$key]["numero"] = $cliente->getNumero();
+            $gridRows[$key]["colonia"] = $cliente->getColonia();
+            $gridRows[$key]["municipio"] = $cliente->getMunicipio();
+            $gridRows[$key]["estado"] = $cliente->getEstado();
+            $gridRows[$key]["cp"] = $cliente->getCp();
+            $gridRows[$key]["login"] = $cliente->getLogin();
+            $gridRows[$key]["email2"] = $cliente->getEmail2();
+            $gridRows[$key]["calleEnvio"] = $cliente->getCalleEnvio();
+            $gridRows[$key]["numeroExtEnvio"] = $cliente->getNumeroExtEnvio();
+            $gridRows[$key]["numeroIntEnvio"] = $cliente->getNumeroIntEnvio();
+            $gridRows[$key]["coloniaEnvio"] = $cliente->getColoniaEnvio();
+            $gridRows[$key]["municipioEnvio"] = $cliente->getMunicipioEnvio();
+            $gridRows[$key]["estadoEnvio"] = $cliente->getEstadoEnvio();
+            $gridRows[$key]["cpEnvio"] = $cliente->getCpEnvio();
         }
 
         $gridModel = new jqGridModel();
@@ -101,13 +110,13 @@ class ClienteService extends CI_Model {
         return $this->clienteDao->getAll();
     }
 
-    public function validateCorreo($correo) {
-        if ($this->clienteDao->validateCorreo($correo) == true) {
+    public function validateLogin($login) {
+        if ($this->clienteDao->validateLogin($login) == true) {
             $response->estatus = 0;
             $response->mensaje = "Correcto";
         } else {
             $response->estatus = 1;
-            $response->mensaje = "Este correo ya esta registrado";
+            $response->mensaje = "Este nombre de usuario ya esta registrado";
         }
         return $response;
     }

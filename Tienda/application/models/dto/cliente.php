@@ -3,44 +3,56 @@
 class Cliente {
 
     private $idCliente;
+    private $login;
+    private $pass;
     private $nombre;
     private $apPaterno;
     private $apMaterno;
-    private $calleNumero;
-    private $colonia;
+    private $nombreEmpresa;
     private $telefono;
+    private $email;
+    private $razonSocial;
+    private $rfc;
+    private $calle;
+    private $numero;
+    private $colonia;
     private $municipio;
     private $estado;
-    private $pais;
     private $cp;
-    private $login;
-    private $password;
-    private $calleNumeroEnvio;
+    private $email2;
+    private $calleEnvio;
+    private $numeroExtEnvio;
+    private $numeroIntEnvio;
     private $coloniaEnvio;
     private $municipioEnvio;
     private $estadoEnvio;
-    private $paisEnvio;
     private $cpEnvio;
 
-    function __construct($idCliente = null, $nombre = "", $apPaterno = "", $apMaterno = "", $calleNumero = "", $colonia = "", $telefono = "", $municipio = "", $estado = "", $pais = "", $cp = "", $login = "", $password = "", $calleNumeroEnvio = "", $coloniaEnvio = "", $municipioEnvio = "", $estadoEnvio = "", $paisEnvio = "", $cpEnvio = "") {
+    function __construct($idCliente = null, $login = "", $pass = "", $nombre = "", $apPaterno = "", $apMaterno = "", $nombreEmpresa = "", $telefono = "", $email = "", $razonSocial = "", $rfc = "", $calle = "", $numero = "", $colonia = "", $municipio = "", $estado = "", $cp = "", $email2 = "", $calleEnvio = "", $numeroExtEnvio = "", $numeroIntEnvio = "", $coloniaEnvio = "", $municipioEnvio = "", $estadoEnvio = "", $cpEnvio = "") {
         $this->idCliente = $idCliente;
+        $this->login = $login;
+        $this->pass = $pass;
         $this->nombre = $nombre;
         $this->apPaterno = $apPaterno;
         $this->apMaterno = $apMaterno;
-        $this->calleNumero = $calleNumero;
-        $this->colonia = $colonia;
+        $this->nombreEmpresa = $nombreEmpresa;
         $this->telefono = $telefono;
+        $this->email = $email;
+        $this->razonSocial = $razonSocial;
+        $this->rfc = $rfc;
+        $this->calle = $calle;
+        $this->numero = $numero;
+        $this->colonia = $colonia;
         $this->municipio = $municipio;
         $this->estado = $estado;
-        $this->pais = $pais;
         $this->cp = $cp;
-        $this->login = $login;
-        $this->password = $password;
-        $this->calleNumeroEnvio = $calleNumeroEnvio;
+        $this->email2 = $email2;
+        $this->calleEnvio = $calleEnvio;
+        $this->numeroExtEnvio = $numeroExtEnvio;
+        $this->numeroIntEnvio = $numeroIntEnvio;
         $this->coloniaEnvio = $coloniaEnvio;
         $this->municipioEnvio = $municipioEnvio;
         $this->estadoEnvio = $estadoEnvio;
-        $this->paisEnvio = $paisEnvio;
         $this->cpEnvio = $cpEnvio;
     }
 
@@ -50,6 +62,22 @@ class Cliente {
 
     public function setIdCliente($idCliente) {
         $this->idCliente = $idCliente;
+    }
+
+    public function getLogin() {
+        return $this->login;
+    }
+
+    public function setLogin($login) {
+        $this->login = $login;
+    }
+
+    public function getPass() {
+        return $this->pass;
+    }
+
+    public function setPass($pass) {
+        $this->pass = $pass;
     }
 
     public function getNombre() {
@@ -76,20 +104,12 @@ class Cliente {
         $this->apMaterno = $apMaterno;
     }
 
-    public function getCalleNumero() {
-        return $this->calleNumero;
+    public function getNombreEmpresa() {
+        return $this->nombreEmpresa;
     }
 
-    public function setCalleNumero($calleNumero) {
-        $this->calleNumero = $calleNumero;
-    }
-
-    public function getColonia() {
-        return $this->colonia;
-    }
-
-    public function setColonia($colonia) {
-        $this->colonia = $colonia;
+    public function setNombreEmpresa($nombreEmpresa) {
+        $this->nombreEmpresa = $nombreEmpresa;
     }
 
     public function getTelefono() {
@@ -98,6 +118,54 @@ class Cliente {
 
     public function setTelefono($telefono) {
         $this->telefono = $telefono;
+    }
+
+    public function getEmail() {
+        return $this->email;
+    }
+
+    public function setEmail($email) {
+        $this->email = $email;
+    }
+
+    public function getRazonSocial() {
+        return $this->razonSocial;
+    }
+
+    public function setRazonSocial($razonSocial) {
+        $this->razonSocial = $razonSocial;
+    }
+
+    public function getRfc() {
+        return $this->rfc;
+    }
+
+    public function setRfc($rfc) {
+        $this->rfc = $rfc;
+    }
+
+    public function getCalle() {
+        return $this->calle;
+    }
+
+    public function setCalle($calle) {
+        $this->calle = $calle;
+    }
+
+    public function getNumero() {
+        return $this->numero;
+    }
+
+    public function setNumero($numero) {
+        $this->numero = $numero;
+    }
+
+    public function getColonia() {
+        return $this->colonia;
+    }
+
+    public function setColonia($colonia) {
+        $this->colonia = $colonia;
     }
 
     public function getMunicipio() {
@@ -116,14 +184,6 @@ class Cliente {
         $this->estado = $estado;
     }
 
-    public function getPais() {
-        return $this->pais;
-    }
-
-    public function setPais($pais) {
-        $this->pais = $pais;
-    }
-
     public function getCp() {
         return $this->cp;
     }
@@ -132,28 +192,36 @@ class Cliente {
         $this->cp = $cp;
     }
 
-    public function getLogin() {
-        return $this->login;
+    public function getEmail2() {
+        return $this->email2;
     }
 
-    public function setLogin($login) {
-        $this->login = $login;
+    public function setEmail2($email2) {
+        $this->email2 = $email2;
     }
 
-    public function getPassword() {
-        return $this->password;
+    public function getCalleEnvio() {
+        return $this->calleEnvio;
     }
 
-    public function setPassword($password) {
-        $this->password = $password;
+    public function setCalleEnvio($calleEnvio) {
+        $this->calleEnvio = $calleEnvio;
     }
 
-    public function getCalleNumeroEnvio() {
-        return $this->calleNumeroEnvio;
+    public function getNumeroExtEnvio() {
+        return $this->numeroExtEnvio;
     }
 
-    public function setCalleNumeroEnvio($calleNumeroEnvio) {
-        $this->calleNumeroEnvio = $calleNumeroEnvio;
+    public function setNumeroExtEnvio($numeroExtEnvio) {
+        $this->numeroExtEnvio = $numeroExtEnvio;
+    }
+
+    public function getNumeroIntEnvio() {
+        return $this->numeroIntEnvio;
+    }
+
+    public function setNumeroIntEnvio($numeroIntEnvio) {
+        $this->numeroIntEnvio = $numeroIntEnvio;
     }
 
     public function getColoniaEnvio() {
@@ -178,14 +246,6 @@ class Cliente {
 
     public function setEstadoEnvio($estadoEnvio) {
         $this->estadoEnvio = $estadoEnvio;
-    }
-
-    public function getPaisEnvio() {
-        return $this->paisEnvio;
-    }
-
-    public function setPaisEnvio($paisEnvio) {
-        $this->paisEnvio = $paisEnvio;
     }
 
     public function getCpEnvio() {

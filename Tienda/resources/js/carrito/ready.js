@@ -52,6 +52,10 @@ $(document).ready(function () {
         max: 100
     });
 
+    $('#buscar').button({icons: {primary: 'ui-icon-search'}}).click(function() {
+        window.location = base_url + "/welcome/buscar/" +$('#buscador').val();
+    });
+
     $("#pedido").dialog({
         modal: true,
         autoOpen: false,

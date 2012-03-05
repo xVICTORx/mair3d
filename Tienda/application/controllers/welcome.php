@@ -50,7 +50,7 @@ class Welcome extends CI_Controller {
         $pagina = $pagina != false ? $pagina : 1;
         if ($idCategoria && is_numeric($idCategoria)) {
             $categoria = $this->categoriaService->getById($idCategoria);
-            $grid = $this->productoService->loadShopProductosPaged("SI", "", "", "SI", "", "", "", "", "idProducto", ORDER_DESC, $pagina, 12, $idCategoria);
+            $grid = $this->productoService->loadShopProductosPaged("SI", "", "", "SI", "", "", "", "", "idProducto", ORDER_DESC, $pagina, 6, $idCategoria);
             $vars = array();
             $vars["productos"] = $grid->getRows();
             $vars["totalPages"] = $grid->getTotal();
@@ -70,7 +70,7 @@ class Welcome extends CI_Controller {
         if ($idSubcategoria) {
             $subcategoria = $this->subcategoriaService->getById($idSubcategoria);
             $categoria = $this->categoriaService->getById($subcategoria->getIdCategoria());
-            $grid = $this->productoService->loadShopProductosPaged("SI", "", "", "", "", $idSubcategoria, "", "", "idProducto", ORDER_DESC, $pagina, 12, null);
+            $grid = $this->productoService->loadShopProductosPaged("SI", "", "", "", "", $idSubcategoria, "", "", "idProducto", ORDER_DESC, $pagina, 6, null);
             $vars = array();
             $vars["productos"] = $grid->getRows();
             $vars["totalPages"] = $grid->getTotal();
@@ -131,7 +131,9 @@ class Welcome extends CI_Controller {
                     "height" => "20",
                     "alt" => $color["nombre"]
                 );
-                $vars["categoria"] = $categoria->getIdCategoria();
+                $vars["categorianumero"] = $categoria->getIdCategoria();
+				$vars["categoriatexto"] = $categoria->getNombre();
+				$vars["subcategoriatexto"] = $subcategoria->getNombre();
                 $vars["colores"][$key]["imagenLink"] = $color["imagen"];
                 $vars["colores"][$key]["imagenColor"] = img($image_properties);
                 $vars["colores"][$key]["idColor"] = $color["idColor"];

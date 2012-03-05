@@ -44,7 +44,8 @@ class ProductoService extends CI_Model {
             $gridRows[$key][TABLE_PRODUCTO_DESCRIPCION] = $producto->getDescripcion();
             $subcategoria = $this->subcategoriaDao->getById($producto->getIdSubcategoria());
             if ($subcategoria != null) {
-                $gridRows[$key][TABLE_PRODUCTO_ID_SUBCATEGORIA] = $subcategoria->getNombre();
+				$categoria = $this->categoriaDao->getById($subcategoria->getIdCategoria());
+                $gridRows[$key][TABLE_PRODUCTO_ID_SUBCATEGORIA] = $categoria->getNombre() . " - " .$subcategoria->getNombre();
             } else {
                 $gridRows[$key][TABLE_PRODUCTO_ID_SUBCATEGORIA] = "";
             }

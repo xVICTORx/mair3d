@@ -44,8 +44,9 @@ class Listas extends CI_Controller{
         $subcategorias = $this->subcategoriaService->getAll();
         $options = array();
         foreach($subcategorias as $key => $subcategoria){
+			$categoria = $this->categoriaService->getById($subcategoria->getIdCategoria());
             $options[$key] = new stdClass();
-            $options[$key]->label = $subcategoria->getNombre();
+            $options[$key]->label = $categoria->getNombre() . " - " .$subcategoria->getNombre();
             $options[$key]->value = $subcategoria->getIdSubCategoria();
         }
         $vars = array(
