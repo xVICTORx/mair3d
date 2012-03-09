@@ -61,6 +61,7 @@ class Welcome extends CI_Controller {
 
     public function process() {
         $this->cartService->process();
+        $this->load->view(VIEW_CARRITO_PROCESS);
     }
 
 }

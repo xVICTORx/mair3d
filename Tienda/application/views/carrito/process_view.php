@@ -2,9 +2,9 @@
     $(document).ready(function() {
        $("#pedido").dialog({
            close: function() {
-               window.location = base_url + "/productos";
+               window.location = base_url + "/welcome";
            }
-       }) 
+       })
     });
 </script>
 <div style="width: 300px; height: auto;">

@@ -102,18 +102,18 @@
                         <td><input type="text" maxlength="255" name="nombreEmpresa" id="nombreEmpresa" class="ui-widget-content ui-corner-all inputForm" placeholder="Nombre de la empresa" autocomplete="off" /></td>
                     </tr>
                     <tr>
-                        <td style="width: 25%; text-align: right;"><label for="telefono">Telefono:</label></td>
+                        <td style="width: 25%; text-align: right;"><label for="telefono">Teléfono :</label></td>
                         <td><input type="text" maxlength="45" name="telefono" id="telefono" class="ui-widget-content ui-corner-all inputForm" placeholder="Telefono" autocomplete="off" /></td>
                     </tr>
                     <tr>
-                        <td style="width: 25%; text-align: right;"><label for="email">Correo Electronico:</label></td>
+                        <td style="width: 25%; text-align: right;"><label for="email">Correo Electrónico:</label></td>
                         <td><input type="text" maxlength="255" name="email" id="email" class="ui-widget-content ui-corner-all inputForm" placeholder="ejemplo@dominio.com" autocomplete="off" /></td>
                     </tr>
                     <tr>
-                        <td colspan="2"><h3 class="textoChico ui-widget-header ui-corner-all">Datos de facturacion</h3></td>
+                        <td colspan="2"><h3 class="textoChico ui-widget-header ui-corner-all">Datos de facturación</h3></td>
                     </tr>
                     <tr>
-                        <td style="width: 25%; text-align: right;"><label for="razonSocial">Razon Social:</label></td>
+                        <td style="width: 25%; text-align: right;"><label for="razonSocial">Razón Social:</label></td>
                         <td><input type="text" maxlength="255" name="razonSocial" id="razonSocial" class="ui-widget-content ui-corner-all inputForm" placeholder="" autocomplete="off" /></td>
                     </tr>
                     <tr>
@@ -133,7 +133,7 @@
                         <td><input type="text" maxlength="100" name="colonia" id="colonia" class="ui-widget-content ui-corner-all inputForm" placeholder="" autocomplete="off" /></td>
                     </tr>
                     <tr>
-                        <td style="width: 25%; text-align: right;"><label for="municipio">Municipio o Delegacion:</label></td>
+                        <td style="width: 25%; text-align: right;"><label for="municipio">Municipio o Delegación:</label></td>
                         <td><input type="text" maxlength="100" name="municipio" id="municipio" class="ui-widget-content ui-corner-all inputForm" placeholder="" autocomplete="off" /></td>
                     </tr>
                     <tr>
@@ -141,15 +141,15 @@
                         <td><input type="text" maxlength="100" name="estado" id="estado" class="ui-widget-content ui-corner-all inputForm" placeholder="" autocomplete="off" /></td>
                     </tr>
                     <tr>
-                        <td style="width: 25%; text-align: right;"><label for="cp">Codigo Postal:</label></td>
+                        <td style="width: 25%; text-align: right;"><label for="cp">Código Postal:</label></td>
                         <td><input type="text" maxlength="5" name="cp" id="cp" class="ui-widget-content ui-corner-all inputForm" placeholder="" autocomplete="off" /></td>
                     </tr>
                     <tr>
-                        <td style="width: 25%; text-align: right;"><label for="email2">Correo Electronico (factura):</label></td>
+                        <td style="width: 25%; text-align: right;"><label for="email2">Correo Electrónico (factura):</label></td>
                         <td><input type="text" maxlength="255" name="email2" id="email2" class="ui-widget-content ui-corner-all inputForm" placeholder="" autocomplete="off" /></td>
                     </tr>
                     <tr>
-                        <td style="width: 25%; text-align: right;"><label for="direccionButtons">Es la misma direccion la de envio que la fiscal?:</label></td>
+                        <td style="width: 25%; text-align: right;"><label for="direccionButtons">SU PEDIDO LE SERA ENVIADO A LA MISMA DIRECCION DE SUS DATOS DE FACTURACION? :</label></td>
                         <td><div id="direccionButtons">
                                 <input style="width: auto; float: left;" type="radio" id="radio1" name="direccion" checked="checked" value="SI" />
                                 <label style="width: auto; float: left;" for="radio1">SI</label>
@@ -159,7 +159,7 @@
                         </td>
                     </tr>
                     <tr class="direccionEnvio">
-                        <td colspan="2"><h3 class="textoChico ui-widget-header ui-corner-all">Direccion Envio</h3></td>
+                        <td colspan="2"><h3 class="textoChico ui-widget-header ui-corner-all">Dirección Envió</h3></td>
                     </tr>
                     <tr class="direccionEnvio">
                         <td style="width: 25%; text-align: right;"><label for="calleEnvio">Calle:</label></td>
@@ -178,11 +178,11 @@
                         <td><input type="text" maxlength="100" name="coloniaEnvio" id="coloniaEnvio" class="ui-widget-content ui-corner-all inputForm" placeholder="" autocomplete="off" /></td>
                     </tr>
                     <tr  class="direccionEnvio">
-                        <td style="width: 25%; text-align: right;"><label for="cpEnvio">Codigo postal:</label></td>
+                        <td style="width: 25%; text-align: right;"><label for="cpEnvio">Código Postal:</label></td>
                         <td><input type="text" maxlength="5" name="cpEnvio" id="cpEnvio" class="ui-widget-content ui-corner-all inputForm" placeholder="" autocomplete="off" /></td>
                     </tr>
                     <tr class="direccionEnvio">
-                        <td style="width: 25%; text-align: right;"><label for="municipioEnvio">Municipio o delegacion:</label></td>
+                        <td style="width: 25%; text-align: right;"><label for="municipioEnvio">Municipio o Delegación:</label></td>
                         <td><input type="text" maxlength="100" name="municipioEnvio" id="municipioEnvio" class="ui-widget-content ui-corner-all inputForm" placeholder="" autocomplete="off" /></td>
                     </tr>
                     <tr class="direccionEnvio">

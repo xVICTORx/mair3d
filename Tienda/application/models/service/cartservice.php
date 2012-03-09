@@ -100,7 +100,10 @@ class CartService extends CI_Model {
         $config["mailtype"] = "html";
         $this->email->initialize($config);
         $this->email->from(ADMIN_CORREO, ADMIN_CORREO);
-        $this->email->to($this->session->userdata("login"));
+        $this->email->to($this->session->userdata("email"));
+        //echo $this->session->userdata("email");
+        //echo COPIA_CORREO;
+        //echo ADMIN_CORREO;
         $this->email->cc(COPIA_CORREO);
         $this->email->subject('Se ha registrado su pedido');
         $this->email->message($correo);

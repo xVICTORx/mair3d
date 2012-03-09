@@ -17,14 +17,14 @@
             var data = new Object();
             data.login = $("#login").val();
             data.pass = $("#pass").val();
-            $.blockUI({css: { 
-                    border: 'none', 
-                    padding: '15px', 
-                    backgroundColor: '#000', 
-                    '-webkit-border-radius': '10px', 
-                    '-moz-border-radius': '10px', 
-                    opacity: .4, 
-                    color: '#fff' 
+            $.blockUI({css: {
+                    border: 'none',
+                    padding: '15px',
+                    backgroundColor: '#000',
+                    '-webkit-border-radius': '10px',
+                    '-moz-border-radius': '10px',
+                    opacity: .4,
+                    color: '#fff'
                 }, message: '<h3>Autentificando, por favor espere...</h3>'});
             $.ajax({
                 url: base_url + "/registro/login",
@@ -57,7 +57,7 @@
 
     function validateFrm() {
         if($("#login").val() == ''){
-            $("#errorFrm").addClass('ui-state-highlight').html('Escriba su nombre del usuario').show('');
+            $("#errorFrm").addClass('ui-state-highlight').html('Escriba su nombre de usuario').show('');
             $("#login").addClass('ui-state-error').focus();
             return false;
         } else {
@@ -83,10 +83,10 @@
             <td id="errorFrm"  colspan="2"></td>
         </tr>
         <tr>
-            <td colspan="2">Correo electronico:</td>
+            <td colspan="2">Nombre de usuario:</td>
         </tr>
         <tr style="text-align: center">
-            <td colspan="2"><input type="text" maxlength="50" name="login" id="login" class="ui-widget-content ui-corner-all inputForm" placeholder="ejemplo@dominio.com" autocomplete="off" style="width: 95%"/></td>
+            <td colspan="2"><input type="text" maxlength="50" name="login" id="login" class="ui-widget-content ui-corner-all inputForm" autocomplete="off" style="width: 95%"/></td>
         </tr>
         <tr>
             <td colspan="2">Contraseña:</td>
